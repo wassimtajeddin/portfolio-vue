@@ -1,31 +1,7 @@
 <template>
   <main>
-    <section id="hero">
-      <div class="hero-content">
-        <h2>Hello World!</h2>
-        <p class="tagline">I'm a passionate developer creating innovative solutions</p>
-        <p>Welcome to my portfolio website.</p>
-        <div class="cta-buttons">
-          <router-link to="/projects" class="btn primary">View My Work</router-link>
-          <router-link to="/contact" class="btn secondary">Get In Touch</router-link>
-        </div>
-      </div>
-    </section>
-
-    <section id="featured-skills">
-      <h2>My Skills</h2>
-      <div class="skills-grid">
-        <SkillItem title="Backend" :skills="['Java', 'Spring Boot', 'Python', 'Node.js']" />
-        <SkillItem title="Frontend" :skills="['Vue.js', 'JavaScript', 'HTML/CSS']" />
-        <SkillItem title="Databases" :skills="['MySQL', 'SQLite', 'MongoDB']" />
-        <SkillItem title="DevOps" :skills="['Docker', 'Azure']" />
-        <SkillItem title="Methodologies" :skills="['Agile (Scrum)', 'CI/CD', 'TDD']" />
-        <SkillItem title="AI/ML" :skills="['TensorFlow', 'ML Models']" />
-      </div>
-    </section>
-
-    <section id="featured-projects">
-      <h2>Featured Projects</h2>
+    <section id="projects">
+      <h2>My Projects</h2>
       <div class="project-cards">
         <div class="project-card">
           <h3>Person Management API (Spring Boot App)</h3>
@@ -59,13 +35,44 @@
           </div>
           <a href="https://github.com/wassimtajeddin/SVM-MNIST-Handwritten-Digit-Classifier" class="project-link" target="_blank" rel="noopener noreferrer">View Details</a>
         </div>
+        <div class="project-card">
+          <h3>Country Database Management App</h3>
+          <p>A Java console application to manage a SQLite database of countries</p>
+          <div class="tech-tags">
+            <span>Java</span>
+            <span>SQLite</span>
+            <span>JDBC</span>
+          </div>
+          <a href="https://github.com/wassimtajeddin/labb3-sqLite" class="project-link" target="_blank" rel="noopener noreferrer">View Details</a>
+        </div>
+        <div class="project-card">
+          <h3>Product Management System</h3>
+          <p>A Java command-line application for managing a list of products.</p>
+          <div class="tech-tags">
+            <span>Java</span>
+            <span>File handling (CSV storage)</span>
+          </div>
+          <a href="https://github.com/wassimtajeddin/labb2" class="project-link" target="_blank" rel="noopener noreferrer">View Details</a>
+        </div>
+        <div class="project-card">
+          <h3>JavaFX Paint Application</h3>
+          <p>A JavaFX desktop application that allows users to draw on a canvas.</p>
+          <div class="tech-tags">
+            <span>JavaFX</span>
+            <span>Unit testing with JUnit</span>
+          </div>
+          <a href="https://github.com/wassimtajeddin/JavaFx" class="project-link" target="_blank" rel="noopener noreferrer">View Details</a>
+        </div>
       </div>
       <div class="view-all">
-        <router-link to="/projects" class="btn outline">View More Projects</router-link>
+        <a href="https://github.com/wassimtajeddin?tab=repositories" class="btn outline" target="_blank" rel="noopener noreferrer">View All Projects</a>
       </div>
     </section>
   </main>
 </template>
 
 <script>
+export default {
+  name: 'ProjectsView'
+}
 </script>
