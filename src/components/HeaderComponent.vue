@@ -15,10 +15,6 @@
 
 <script>
 export default {
-  name: 'AppHeader'
+  name: 'HeaderComponent'
 }
 </script>
-
-<style scoped>
-/* Your existing header styles will be here */
-</style>

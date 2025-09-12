@@ -68,4 +68,12 @@
 </template>
 
 <script>
+import SkillItem from '@/components/SkillItemComponent.vue'
+
+export default {
+  name: 'HomeView',
+  components: {
+    SkillItem
+  }
+};
 </script>

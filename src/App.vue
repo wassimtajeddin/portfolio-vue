@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import "@/assets/style.css";
 import HeaderComponent from './components/HeaderComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
 
