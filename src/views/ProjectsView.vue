@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section id="projects">
+    <section id="projects" v-intersect>
       <h2>My Projects</h2>
       <div class="project-cards">
         <div class="project-card">

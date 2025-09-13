@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section id="contact">
+    <section id="contact" v-intersect>
       <h2>Contact Me</h2>
       
       <div class="contact-container">

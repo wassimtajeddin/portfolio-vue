@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section id="cv">
+    <section id="cv" v-intersect>
       <h2>Curriculum Vitae</h2>
       
       <div class="cv-section">

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section id="hero">
+    <section id="hero" v-intersect>
       <div class="hero-content">
         <h2>Hello World!</h2>
         <p class="tagline">I'm a passionate developer creating innovative solutions</p>
@@ -12,7 +12,7 @@
       </div>
     </section>
 
-    <section id="featured-skills">
+    <section id="featured-skills" v-intersect>
       <h2>My Skills</h2>
       <div class="skills-grid">
         <SkillItem title="Backend" :skills="['Java', 'Spring Boot', 'Python', 'Node.js']" />
@@ -24,7 +24,7 @@
       </div>
     </section>
 
-    <section id="featured-projects">
+    <section id="featured-projects" v-intersect>
       <h2>Featured Projects</h2>
       <div class="project-cards">
         <div class="project-card">
