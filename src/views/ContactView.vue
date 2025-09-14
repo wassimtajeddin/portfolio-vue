@@ -67,7 +67,7 @@ export default {
       message: '',
       isSuccess: false,
       apiUrl: process.env.NODE_ENV === 'production' 
-        ? 'https://your-backend-service.onrender.com/api/contact'
+        ? 'https://wassimtajeddin.github.io/portfolio-vue/api/contact'
         : 'http://localhost:3001/api/contact'
     }
   },
@@ -106,7 +106,7 @@ export default {
         }
       } catch (error) {
         console.error('Request failed:', error);
-        this.showMessage('Failed to send message. Please check your connection and try again.', false);
+        this.showMessage('Failed to send message.', false);
       } finally {
         this.loading = false;
       }
