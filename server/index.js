@@ -8,24 +8,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const allowedOrigins = [
-  "http://localhost:8080",
-  "https://wassimtajeddin.github.io/portfolio-vue",
-];
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("CORS not allowed"));
-    }
-  },
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type"]
-}));
-
-app.options('*', cors());
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,7 +22,7 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/api/contact', (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, subject, message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ msg: 'Please fill in all fields' });
@@ -71,7 +54,7 @@ app.post('/api/contact', (req, res) => {
   const adminMailOptions = {
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
-    subject: 'New Contact Form Submission',
+    subject: subject || 'New Contact Form Submission',
     html: adminHtml
   };
 
@@ -85,17 +68,17 @@ app.post('/api/contact', (req, res) => {
   transporter.sendMail(adminMailOptions, (error, info) => {
     if (error) {
       console.error('Error sending admin email:', error);
-      return res.status(500).json({ msg: 'Error sending admin email', error });
+      return res.status(500).json({ msg: 'Error sending email' });
     }
     console.log('Admin email sent:', info.response);
 
     transporter.sendMail(userMailOptions, (error, info) => {
       if (error) {
         console.error('Error sending user email:', error);
-        return res.status(500).json({ msg: 'Error sending user email', error });
+        return res.status(500).json({ msg: 'Error sending email' });
       }
       console.log('User email sent:', info.response);
-      res.status(200).json({ success: true, msg: 'Message sent successfully' });
+      res.status(200).json({ msg: 'Message sent successfully' });
     });
   });
 });
