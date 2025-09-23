@@ -1,8 +1,6 @@
 <template>
   <header>
-    <div class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
+    <ThemeToggle />
     <div class="header-container">
       <h1>Wassim Tajeddin</h1>
       <img src="../assets/Wassim.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
@@ -17,7 +15,11 @@
 </template>
 
 <script>
+import ThemeToggle from '@/components/ThemeToggle.vue'
 export default {
+   components: {
+    ThemeToggle
+  },
   name: 'HeaderComponent'
 }
 </script>
