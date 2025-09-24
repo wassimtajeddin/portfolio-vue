@@ -76,37 +76,3 @@ export default {
   name: 'ProjectsView'
 }
 </script>
-<style scoped>
-
-.project-link {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  margin-top: auto;
-  position: relative;
-  z-index: 1;
-  transition: var(--transition);
-}
-
-.project-link:hover {
-  color: #00e6b8;
-  transform: translateX(5px);
-}
-
-.project-link::after {
-  content: '→';
-  margin-left: 5px;
-  transition: transform 0.3s ease;
-}
-
-.project-link:hover::after {
-  transform: translateX(5px);
-}
-
-.view-all {
-  text-align: center;
-  }
-  
-</style>
