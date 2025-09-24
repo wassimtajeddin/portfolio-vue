@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     themeIcon() {
-      return this.currentTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun'
+      return this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun'
     }
   },
   mounted() {
