@@ -88,3 +88,79 @@ export default {
   name: 'CvView'
 }
 </script>
+<style scoped>
+
+.cv-section {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .cv-section {
+            border: 1px solid #e0e0e0;
+        }
+
+.cv-section:hover {
+            box-shadow: var(--card-hover-shadow);
+            border-color: rgba(0, 212, 170, 0.2);
+        }
+
+        [data-theme="light"] .cv-section:hover {
+            border-color: rgba(0, 122, 99, 0.2);
+        }
+
+.cv-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        [data-theme="light"] .cv-section h3 {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+.cv-item {
+  margin-bottom: 2rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.cv-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  height: 10px;
+  width: 10px;
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+}
+
+.cv-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-item h4 {
+            color: #f0f0f0;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        [data-theme="light"] .cv-item h4 {
+            color: #333;
+        }
+
+.cv-item .date {
+  color: var(--accent-color);
+  font-style: italic;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+</style>

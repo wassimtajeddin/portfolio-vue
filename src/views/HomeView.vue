@@ -77,3 +77,52 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+#hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(to bottom, var(--primary-color), var(--light-bg));
+  border-radius: 15px;
+  margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(0, 212, 170, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+#hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  #hero h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+ 
+  #hero {
+    padding: 2.5rem 1rem;
+  }
+
+  #hero h2 {
+    font-size: 1.8rem;
+  }
+
+}
+
+</style>

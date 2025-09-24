@@ -123,3 +123,166 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-info {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .contact-info {
+            border: 1px solid #e0e0e0;
+        }
+
+.contact-info:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.contact-info h3 {
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  transition: var(--transition);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.contact-detail:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: translateX(5px);
+}
+
+.contact-detail i {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+  margin-right: 1.5rem;
+  width: 30px;
+  transition: var(--transition);
+}
+
+.contact-detail:hover i {
+  transform: scale(1.2);
+}
+
+.contact-form {
+            background: var(--secondary-color);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .contact-form {
+            border: 1px solid #e0e0e0;
+        }
+
+.contact-form:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.contact-form h3 {
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+  position: relative;
+}
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #f0f0f0;
+            font-weight: 500;
+        }
+        [data-theme="light"] .form-group label {
+            color: #333;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .form-group input, 
+        [data-theme="light"] .form-group textarea {
+            border: 1px solid #e0e0e0;
+        }
+
+.form-group input:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+}
+
+.form-group textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background: var(--accent-color);
+  color: black;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.submit-btn:hover::before {
+  transform: translateX(0);
+}
+
+.submit-btn:hover {
+  background: #00e6b8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 212, 170, 0.4);
+}
+
+</style>
