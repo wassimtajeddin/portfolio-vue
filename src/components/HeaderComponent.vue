@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ThemeToggle from '@/components/ThemeToggle.vue'
+import ThemeToggle from '@/components/ThemeToggleComponent.vue'
 export default {
    components: {
     ThemeToggle
