@@ -3,7 +3,7 @@
     <section id="hero" v-intersect>
       <div class="hero-content">
         <h2>Hello World!</h2>
-        <p class="tagline">I'm a passionate developer creating innovative solutions</p>
+        <p class="tagline">I'm a <span class="typing-text" ref="typingText"></span><span class="cursor">|</span></p>
         <p>Welcome to my portfolio website.</p>
         <div class="cta-buttons">
           <router-link to="/projects" class="btn primary">View My Work</router-link>
@@ -74,6 +74,54 @@ export default {
   name: 'HomeView',
   components: {
     SkillItem
+  },
+  mounted() {
+    this.typeText();
+  },
+  methods: {
+    typeText() {
+      const texts = [
+        'motivated software developer',
+        'Java developer', 
+        'problem solver',
+        'curious mind',
+        'full-stack developer',
+        'cloud developer'
+      ];
+      const element = this.$refs.typingText;
+      
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingSpeed = 100;
+      
+      const type = () => {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+          element.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+          typingSpeed = 50;
+        } else {
+          element.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+          typingSpeed = 100;
+        }
+        
+        if (!isDeleting && charIndex === currentText.length) {
+          isDeleting = true;
+          setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, typingSpeed);
+        }
+      };
+      
+      type();
+    }
   }
 };
 </script>
@@ -114,7 +162,7 @@ export default {
 }
 
 @media (max-width: 480px) {
- 
+
   #hero {
     padding: 2.5rem 1rem;
   }
@@ -122,7 +170,7 @@ export default {
   #hero h2 {
     font-size: 1.8rem;
   }
-
+  
 }
 
 </style>
