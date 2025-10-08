@@ -81,7 +81,7 @@ export default {
   methods: {
     typeText() {
       const texts = [
-        'motivated software developer',
+       'motivated software developer',
         'Java developer', 
         'problem solver',
         'curious mind',
@@ -155,9 +155,52 @@ export default {
   font-weight: 700;
 }
 
+.tagline {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  min-height: 2rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.typing-text {
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.cursor {
+  color: var(--accent-color);
+  font-weight: 600;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { 
+    opacity: 1; 
+  }
+  51%, 100% { 
+    opacity: 0; 
+  }
+}
+
 @media (max-width: 768px) {
   #hero h2 {
     font-size: 2.2rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .typing-text {
+    margin-left: 0;
   }
 }
 
@@ -171,6 +214,9 @@ export default {
     font-size: 1.8rem;
   }
   
+  .tagline {
+    font-size: 1.1rem;
+  }
 }
 
 </style>
