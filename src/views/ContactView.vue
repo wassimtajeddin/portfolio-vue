@@ -123,6 +123,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 
 .contact-container {
@@ -213,6 +214,8 @@ export default {
             margin-bottom: 0.8rem;
             color: #f0f0f0;
             font-weight: 500;
+            transition: all 0.3s ease;
+            transform-origin: left top;
         }
         [data-theme="light"] .form-group label {
             color: #333;
@@ -228,6 +231,7 @@ export default {
             color: var(--text-color);
             font-family: 'Poppins', sans-serif;
             transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         [data-theme="light"] .form-group input, 
@@ -239,12 +243,21 @@ export default {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(0, 212, 170, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 212, 170, 0.2);
+  transform: translateY(-2px);
 }
 
 .form-group textarea {
   min-height: 180px;
   resize: vertical;
+}
+
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  transform: translateY(-25px) scale(0.8);
+  color: var(--accent-color);
 }
 
 .submit-btn {
