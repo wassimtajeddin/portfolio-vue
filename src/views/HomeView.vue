@@ -81,11 +81,11 @@ export default {
   methods: {
     typeText() {
       const texts = [
-       'motivated software developer',
         'Java developer', 
+        'motivated software developer',
         'problem solver',
-        'curious mind',
         'full-stack developer',
+        'curious mind',
         'cloud developer'
       ];
       const element = this.$refs.typingText;
