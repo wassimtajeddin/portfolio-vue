@@ -3,7 +3,7 @@
     <ThemeToggle />
     <div class="header-container">
       <h1>Wassim Tajeddin</h1>
-      <img src="../assets/Wassim.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
+      <img src="/Wassim.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
       <nav>
         <router-link to="/" :class="{ active: $route.path === '/' }">Home</router-link>
         <router-link to="/cv" :class="{ active: $route.path === '/cv' }">CV</router-link>
