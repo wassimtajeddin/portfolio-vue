@@ -195,7 +195,6 @@ export default {
   
   .tagline {
     font-size: 1.2rem;
-    flex-direction: column;
     gap: 0.5rem;
   }
   

@@ -127,12 +127,6 @@ section.visible {
   transform: translateY(0);
 }
 
-.tagline {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-muted)
-}
-
 .cta-buttons {
   display: flex;
   justify-content: center;
@@ -394,10 +388,6 @@ section {
 
   main {
     padding: 1.5rem;
-  }
-
-  .tagline {
-    font-size: 1.1rem;
   }
 
   .cta-buttons {
