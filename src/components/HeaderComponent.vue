@@ -78,4 +78,46 @@ header h1 {
   display: inline-block;
 }
 
+@media (max-width: 768px) {
+  .header-container {
+    padding: 1.2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  nav {
+    gap: 1rem;
+
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+
+  main {
+    padding: 1rem;
+  }
+}
 </style>

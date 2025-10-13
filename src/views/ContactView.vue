@@ -23,7 +23,7 @@
             <span>Response within 24 hours</span>
           </div>
         </div>
-        
+    
         <div class="contact-form">
           <h3>Send a Message</h3>
           <form @submit.prevent="handleSubmit">
@@ -298,4 +298,10 @@ export default {
   box-shadow: 0 8px 20px rgba(0, 212, 170, 0.4);
 }
 
+@media (max-width: 992px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
 </style>
