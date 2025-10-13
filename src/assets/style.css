@@ -33,11 +33,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-button, a, [role="button"] {
-  touch-action: manipulation;
 }
 
 html {
@@ -125,6 +120,12 @@ section {
 section.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.tagline {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted)
 }
 
 .cta-buttons {
@@ -384,10 +385,42 @@ section {
   background: var(--accent-color);
 }
 
+@media (max-width: 992px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .header-container {
+    padding: 1.2rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+  }
+
+  nav {
+    gap: 1rem;
+
+  }
+
+  nav a {
+    font-size: 1rem;
+  }
 
   main {
     padding: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
   }
 
   .cta-buttons {
@@ -411,6 +444,22 @@ section {
 }
 
 @media (max-width: 480px) {
+  .header-container {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+
+  main {
+    padding: 1rem;
+  }
 
   section {
     padding: 2rem 0;

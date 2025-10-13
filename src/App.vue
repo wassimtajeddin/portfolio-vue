@@ -69,10 +69,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .scroll-to-top.visible {
