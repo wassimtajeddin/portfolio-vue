@@ -5,7 +5,7 @@
     <FooterComponent />
     <button 
       v-show="showScrollTop" 
-      @click="scrollToTop" 
+      @click="scrollToTop" @touchstart="scrollToTop"
       class="scroll-to-top"
       :class="{ visible: showScrollTop }"
     >
