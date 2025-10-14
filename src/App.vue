@@ -5,7 +5,7 @@
     <FooterComponent />
     <button 
       v-show="showScrollTop" 
-      @click="scrollToTop" @touchstart="scrollToTop"
+      @click="scrollToTop"
       class="scroll-to-top"
       :class="{ visible: showScrollTop }"
     >
@@ -53,7 +53,7 @@ export default {
 <style scoped>
 .scroll-to-top {
   position: fixed;
-  bottom: 30px;
+  bottom: calc(30px + env(safe-area-inset-bottom));
   right: 30px;
   width: 50px;
   height: 50px;
