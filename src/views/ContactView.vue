@@ -134,7 +134,7 @@ export default {
 
 .contact-info {
             background: var(--secondary-color);
-            padding: 2.5rem;
+            padding: 1.7rem;
             border-radius: 15px;
             box-shadow: var(--card-shadow);
             border: 1px solid #333;
@@ -298,10 +298,31 @@ export default {
   box-shadow: 0 8px 20px rgba(0, 212, 170, 0.4);
 }
 
+.contact-detail span {
+  word-break: break-word;
+}
+
 @media (max-width: 992px) {
   .contact-container {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+}
+
+@media (max-width: 420px) {
+.contact-detail span {
+ font-size: 0.9rem;
+}
+.contact-info {
+  padding: 1rem;
+}
+}
+@media (max-width: 370px) {
+ .contact-detail span {
+  font-size: 0.8rem;
+}
+.contact-info {
+  padding: 0rem;
+}
 }
 </style>
