@@ -44,7 +44,6 @@
             </button>
           </form>
           <div v-if="message" class="message" :class="{ success: isSuccess, error: !isSuccess }">
-            <i :class="isSuccess ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
             {{ message }}
           </div>
         </div>
