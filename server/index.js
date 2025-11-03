@@ -1,83 +1,77 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
 require('dotenv').config();
+const { MongoClient } = require('mongodb');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+const password = process.env.DB_PASSWORD;
+const uri = `mongodb+srv://wassimtajeddin:${password}@cluster.vxwsnsd.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster`;
 
-const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
+let db;
+let client;
+
+async function connectDB() {
+  try {
+    client = new MongoClient(uri);
+    await client.connect();
+    db = client.db('portfolio');
+    console.log('Connected to MongoDB');
+    return true;
+  } catch (error) {
+    console.error('MongoDB connection failed:', error.message);
+    return false;
   }
-});
+}
 
-app.post('/api/contact', (req, res) => {
+connectDB();
+
+app.use(cors());
+app.use(express.json());
+
+app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
     return res.status(400).json({ msg: 'Please fill in all fields' });
   }
 
-  const adminHtml = `
-    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-      <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
-    </div>
-  `;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ 
+      success: false, 
+      msg: 'Please enter a valid email address' 
+    });
+  }
 
-  const userHtml = `
-    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-      <h2>Thank you for contacting us, ${name}!</h2>
-      <p>We have received your message and will get back to you shortly.</p>
-      <p>Here is a copy of your message:</p>
-      <p>${message}</p>
-      <br>
-      <p>Best regards,</p>
-      <p>Wassim Tajeddin</p>
-    </div>
-  `;
-
-  const adminMailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: 'New Contact Form Submission',
-    html: adminHtml
-  };
-
-  const userMailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: 'Thank you for contacting us',
-    html: userHtml
-  };
-
-  transporter.sendMail(adminMailOptions, (error, info) => {
-    if (error) {
-      console.error('Error sending admin email:', error);
-      return res.status(500).json({ msg: 'Error sending admin email' });
+  try {
+    if (!db) {
+      await connectDB();
     }
 
-    transporter.sendMail(userMailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending user email:', error);
-        return res.status(500).json({ msg: 'Error sending user email' });
-      }
-      res.status(200).json({ success: true, msg: 'Message sent successfully' });
+    const collection = db.collection('contact_messages');
+    const result = await collection.insertOne({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      createdAt: new Date(),
+      read: false
     });
-  });
+
+    console.log('Message stored in MongoDB with ID:', result.insertedId);
+    
+    res.status(200).json({ 
+      success: true, 
+      msg: 'Message received successfully! I will get back to you soon.' 
+    });
+  } catch (error) {
+    console.error('Error storing message:', error);
+    res.status(500).json({ 
+      success: false, 
+      msg: 'Database error. Please try again.' 
+    });
+  }
 });
 
 app.listen(PORT, () => {
