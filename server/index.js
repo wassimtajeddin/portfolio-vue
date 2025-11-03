@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3001;
 const password = process.env.DB_PASSWORD;
 const uri = `mongodb+srv://wassimtajeddin:${password}@cluster.vxwsnsd.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster`;
 
+const adminRoutes = require('./routes/admin');
+
 let db;
 let client;
 
@@ -29,6 +31,9 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+app.use('/admin/api', adminRoutes);
+app.use(express.static('public'));
+
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
@@ -76,4 +81,8 @@ app.post('/api/contact', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile('admin.html', { root: './public' });
 });
