@@ -99,7 +99,51 @@
                 console.error('Error deleting message:', error);
             }
         }
+        async function toggleReadStatus(messageId, currentlyRead) {
+    try {
+        const endpoint = currentlyRead ? 'unread' : 'read';
+        const response = await fetch(`/admin/api/messages/${messageId}/${endpoint}`, {
+            method: 'PUT'
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            loadMessages();
+        }
+    } catch (error) {
+        console.error('Error toggling read status:', error);
     }
+}
+
+function displayMessages() {
+    const container = document.getElementById('messagesList');
+    container.innerHTML = '';
+
+    messages.forEach(message => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${message.read ? 'read' : 'unread'}`;
+        
+        messageDiv.innerHTML = `
+            <div class="message-header">
+                <div class="message-info">
+                    <div class="name">${message.name}</div>
+                    <div class="email">${message.email}</div>
+                    <div class="date">${new Date(message.createdAt).toLocaleString()}</div>
+                </div>
+                <div class="message-actions">
+                    <button class="read-btn" onclick="toggleReadStatus('${message._id}', ${message.read})">
+                        ${message.read ? 'Mark Unread' : 'Mark Read'}
+                    </button>
+                    <button class="delete-btn" onclick="deleteMessage('${message._id}')">Delete</button>
+                </div>
+            </div>
+            <div class="message-content">${message.message}</div>
+        `;
+        
+        container.appendChild(messageDiv);
+    });
+}
+}
 
     loadMessages();
     setInterval(loadMessages, 30000);

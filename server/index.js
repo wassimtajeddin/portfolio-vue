@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const path = require('path');
 const { MongoClient } = require('mongodb');
 
 const app = express();
@@ -9,37 +10,43 @@ const PORT = process.env.PORT || 3001;
 const password = process.env.DB_PASSWORD;
 const uri = `mongodb+srv://wassimtajeddin:${password}@cluster.vxwsnsd.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster`;
 
-const adminRoutes = require('./routes/admin');
-
 let db;
 let client;
 
 async function connectDB() {
   try {
-    client = new MongoClient(uri);
-    await client.connect();
-    db = client.db('portfolio');
-    console.log('Connected to MongoDB');
-    return true;
+    if (!client) {
+      client = new MongoClient(uri);
+      await client.connect();
+      db = client.db('portfolio');
+      console.log('Connected to MongoDB');
+    }
+    return db;
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
-    return false;
+    throw error;
   }
 }
 
-connectDB();
+const adminRoutes = require('./admin');
 
 app.use(cors());
 app.use(express.json());
-app.use('/admin/api', adminRoutes);
-app.use(express.static('public'));
 
+app.use('/admin/api', adminRoutes);
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
-    return res.status(400).json({ msg: 'Please fill in all fields' });
+    return res.status(400).json({ 
+      success: false, 
+      msg: 'Please fill in all fields' 
+    });
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,11 +58,9 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    if (!db) {
-      await connectDB();
-    }
+    const database = await connectDB();
+    const collection = database.collection('contact_messages');
 
-    const collection = db.collection('contact_messages');
     const result = await collection.insertOne({
       name: name.trim(),
       email: email.trim(),
@@ -81,8 +86,4 @@ app.post('/api/contact', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-});
-
-app.get('/admin', (req, res) => {
-  res.sendFile('admin.html', { root: './public' });
 });
