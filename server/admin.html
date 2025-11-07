@@ -166,4 +166,64 @@
         height: 2px;
         background: linear-gradient(to right, transparent, var(--accent-color), transparent);
     }
+
+    .stats {
+        background: var(--secondary-color);
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 3rem;
+        text-align: center;
+        font-size: 1.1em;
+        border: 1px solid #333;
+        transition: var(--transition);
+    }
+
+    .stats:hover {
+        box-shadow: var(--card-hover-shadow);
+        transform: translateY(-2px);
+    }
+
+    .message {
+        background: var(--secondary-color);
+        border-radius: 15px;
+        margin: 1.5rem 0;
+        padding: 2rem;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        border: 1px solid #333;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .message::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: linear-gradient(to bottom, rgba(0, 212, 170, 0.1), transparent);
+        transition: height 0.5s ease;
+        z-index: 0;
+    }
+
+    .message:hover::before {
+        height: 100%;
+    }
+
+    .message:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-hover-shadow);
+        border-color: rgba(0, 212, 170, 0.3);
+    }
+
+    .message.unread {
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .message.read {
+        border-left: 4px solid var(--accent-dark);
+    }
+
 </style>
