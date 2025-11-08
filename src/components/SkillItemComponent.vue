@@ -25,20 +25,20 @@ export default {
 <style scoped>
 
 .skill-item {
-            background: var(--secondary-color);
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            border: 1px solid #333;
-            position: relative;
-            overflow: hidden;
-        }
+  background: var(--secondary-color);
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
+}
 
-        [data-theme="light"] .skill-item {
-            border: 1px solid #e0e0e0;
-        }
+[data-theme="light"] .skill-item {
+  border: 1px solid #e0e0e0;
+}
 
 .skill-item::before {
   content: '';

@@ -55,22 +55,22 @@ footer::before {
 }
 
 .social-links a {
-            color: #ccc;
-            font-size: 1.8rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-        }
+  color: #ccc;
+  font-size: 1.8rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
 
-        [data-theme="light"] .social-links a {
-            background: rgba(0, 0, 0, 0.05);
-            color: #666;
-        }
+[data-theme="light"] .social-links a {
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
+}
 
 .social-links a:hover {
   color: var(--accent-color);

@@ -132,17 +132,17 @@ export default {
 }
 
 .contact-info {
-            background: var(--secondary-color);
-            padding: 1.7rem;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid #333;
-            transition: var(--transition);
-        }
+  background: var(--secondary-color);
+  padding: 1.7rem;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid #333;
+  transition: var(--transition);
+}
 
-        [data-theme="light"] .contact-info {
-            border: 1px solid #e0e0e0;
-        }
+[data-theme="light"] .contact-info {
+  border: 1px solid #e0e0e0;
+}
 
 .contact-info:hover {
   box-shadow: var(--card-hover-shadow);
@@ -181,17 +181,17 @@ export default {
 }
 
 .contact-form {
-            background: var(--secondary-color);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid #333;
-            transition: var(--transition);
-        }
+  background: var(--secondary-color);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid #333;
+  transition: var(--transition);
+}
 
-        [data-theme="light"] .contact-form {
-            border: 1px solid #e0e0e0;
-        }
+[data-theme="light"] .contact-form {
+  border: 1px solid #e0e0e0;
+}
 
 .contact-form:hover {
   box-shadow: var(--card-hover-shadow);
@@ -208,35 +208,35 @@ export default {
   position: relative;
 }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: #f0f0f0;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            transform-origin: left top;
-        }
-        [data-theme="light"] .form-group label {
-            color: #333;
-        }
-        
-        .form-group input, 
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: var(--primary-color);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-            transition: all 0.3s ease;
-        }
+.form-group label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #f0f0f0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  transform-origin: left top;
+}
+[data-theme="light"] .form-group label {
+  color: #333;
+}
 
-        [data-theme="light"] .form-group input, 
-        [data-theme="light"] .form-group textarea {
-            border: 1px solid #e0e0e0;
-        }
+.form-group input, 
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  transition: var(--transition);
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .form-group input, 
+[data-theme="light"] .form-group textarea {
+  border: 1px solid #e0e0e0;
+}
 
 .form-group input:focus, 
 .form-group textarea:focus {

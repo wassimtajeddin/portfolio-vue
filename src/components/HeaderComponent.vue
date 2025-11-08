@@ -39,19 +39,19 @@ export default {
 }
 
 .header-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0, 212, 170, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 212, 170, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
 
-        [data-theme="light"] .header-container::before {
-            background: linear-gradient(45deg, rgba(0, 122, 99, 0.05) 0%, transparent 70%);
-        }
+[data-theme="light"] .header-container::before {
+  background: linear-gradient(45deg, rgba(0, 122, 99, 0.05) 0%, transparent 70%);
+}
 
 
 header h1::after {
