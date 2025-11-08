@@ -33,9 +33,9 @@ const adminRoutes = require('./admin');
 app.use(cors());
 app.use(express.json());
 
-app.use('/admin/api', adminRoutes);
+app.use('/api', adminRoutes);
 
-app.get('/admin', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
