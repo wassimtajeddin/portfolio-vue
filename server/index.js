@@ -28,14 +28,14 @@ async function connectDB() {
   }
 }
 
+const authenticate = require('./auth');
 const adminRoutes = require('./admin');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/api', adminRoutes);
-
-app.get('/', (req, res) => {
+app.get('/', authenticate, (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
