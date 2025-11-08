@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Messages Admin</title>
 </head>
+<button id="themeToggle" class="theme-toggle" title="Toggle dark/light mode">
+        <i class="fas fa-moon"></i>
+</button>
 <body>
     <div class="container">
         <h1>Contact Messages Admin</h1>
@@ -106,6 +109,36 @@
 
     loadMessages();
     setInterval(loadMessages, 30000);
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(currentTheme);
+    updateToggleIcon(currentTheme);
+    
+    themeToggle.addEventListener('click', toggleTheme);
+    
+    function toggleTheme() {
+        const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(newTheme);
+        updateToggleIcon(newTheme);
+        localStorage.setItem('theme', newTheme);
+    }
+    
+    function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+    }
+    
+    function updateToggleIcon(theme) {
+        if (theme === 'light') {
+            themeIcon.className = 'fas fa-moon';
+            themeToggle.setAttribute('title', 'Switch to dark mode');
+        } else {
+            themeIcon.className = 'fas fa-sun';
+            themeToggle.setAttribute('title', 'Switch to light mode');
+        }
+    }
 </script>
 
 <style>
@@ -381,4 +414,5 @@
     ::-webkit-scrollbar-thumb:hover {
         background: var(--accent-color);
     }
+    
 </style>
