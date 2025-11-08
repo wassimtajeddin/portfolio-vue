@@ -200,6 +200,36 @@
         background: linear-gradient(to right, transparent, var(--accent-color), transparent);
     }
 
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--secondary-color);
+        border: 1px solid var(--accent-color);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        border: none;
+    }
+
+    .theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .theme-toggle i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        transition: var(--transition);
+    }
+
     .stats {
         background: var(--secondary-color);
         padding: 2rem;
@@ -396,6 +426,18 @@
             flex: 1;
             min-width: 140px;
         }
+
+        .theme-toggle {
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+        }
+        
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
     }
 
     ::-webkit-scrollbar {
@@ -414,5 +456,5 @@
     ::-webkit-scrollbar-thumb:hover {
         background: var(--accent-color);
     }
-    
+
 </style>
