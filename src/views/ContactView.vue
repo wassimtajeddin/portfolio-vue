@@ -66,7 +66,7 @@ export default {
       message: '',
       isSuccess: false,
       apiUrl: process.env.NODE_ENV === 'production' 
-        ? 'https://portfolio-vue-1hg5.onrender.com/api/contact'
+        ? 'https://admin.wassimtajeddin.com/api/contact'
         : 'http://localhost:3001/api/contact'
     }
   },
