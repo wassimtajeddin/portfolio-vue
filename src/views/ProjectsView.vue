@@ -4,6 +4,18 @@
       <h2>My Projects</h2>
       <div class="project-cards">
         <div class="project-card">
+          <h3>Portfolio Vue App</h3>
+          <p>Vue.js application integrated with Node.js API, MongoDB, and GitHub Actions for CI/CD.</p>
+          <div class="tech-tags">
+            <span>Vue.js</span>
+            <span>Node.js</span>
+            <span>MongoDB</span>
+            <span>API</span>
+            <span>GitHub Actions</span>
+          </div>
+          <a href="https://github.com/wassimtajeddin/portfolio-vue" class="project-link" target="_blank" rel="noopener noreferrer">View Details</a>
+        </div>
+        <div class="project-card">
           <h3>Person Management API (Spring Boot App)</h3>
           <p>Spring Boot REST API for managing people which Supports basic CRUD operations (Create, Read, Update, Delete)</p>
           <div class="tech-tags">
