@@ -53,6 +53,21 @@ export default {
   background: linear-gradient(45deg, rgba(0, 122, 99, 0.05) 0%, transparent 70%);
 }
 
+.profile-pic {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1rem 0;
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+  transition: var(--transition);
+}
+
+.profile-pic:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 212, 170, 0.5);
+}
 
 header h1::after {
   content: '';
