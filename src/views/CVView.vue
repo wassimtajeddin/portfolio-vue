@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="cv-section">
+            <div class="cv-section">
         <h3>Education</h3>
         <div class="cv-item">
           <h4>Java Developer — IT-högskolan, Gothenburg</h4>
@@ -47,6 +47,23 @@
             <li>Utilized TensorFlow and hyperparameter optimization</li>
           </ul>
         </div>
+
+        <div class="cv-item">
+          <h4>Cloud Development with AWS — IT-högskolan, Gothenburg</h4>
+          <div class="date">Oct 2025 - Present</div>
+          <ul>
+            <li>Learning AWS services, cloud deployment, and serverless architecture</li>
+          </ul>
+        </div>
+
+        <div class="cv-item">
+          <h4>Architecture and System Design — IT-högskolan, Gothenburg</h4>
+          <div class="date">Nov 2025 - Present</div>
+          <ul>
+            <li>Studying scalable system architecture, design patterns, and best practices</li>
+          </ul>
+        </div>
+
         <div class="cv-item">
           <h4>Physics — Aleppo University</h4>
           <div class="date">Sep 2011 - Jun 2015</div>

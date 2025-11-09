@@ -19,6 +19,7 @@
         <SkillItem title="Frontend" :skills="['Vue.js', 'JavaScript', 'HTML/CSS']" />
         <SkillItem title="Databases" :skills="['MySQL', 'SQLite', 'MongoDB']" />
         <SkillItem title="DevOps" :skills="['Docker', 'Azure']" />
+        <SkillItem title="Cloud" :skills="['AWS', 'Azure']" />
         <SkillItem title="Methodologies" :skills="['Agile (Scrum)', 'CI/CD', 'TDD']" />
         <SkillItem title="AI/ML" :skills="['TensorFlow', 'ML Models']" />
       </div>
