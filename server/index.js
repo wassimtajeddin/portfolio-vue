@@ -33,11 +33,11 @@ const adminRoutes = require('./admin');
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'admin-panel' ,'dist')));
 
 app.use('/api', adminRoutes);
 app.get('*', authenticate, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname,'admin-panel' , 'dist', 'index.html'));
 });
 
 app.post('/api/contact', async (req, res) => {
