@@ -7,25 +7,13 @@ let client;
 let db;
 
 async function connectDB() {
-  try {
-    if (!client) {
-      client = new MongoClient(uri);
-      await client.connect();
-      db = client.db('portfolio');
-      console.log('Connected to MongoDB');
-    }
-    return db;
-  } catch (error) {
-    console.error('MongoDB connection failed:', error.message);
-    throw error;
-  }
-}
-
-function getDB() {
-  if (!db) {
-    throw new Error('Database not connected. Call connectDB first.');
+  if (!client) {
+    client = new MongoClient(uri);
+    await client.connect();
+    db = client.db('portfolio');
+    console.log('Connected to MongoDB');
   }
   return db;
 }
 
-module.exports = { connectDB, getDB };
+module.exports = connectDB;
