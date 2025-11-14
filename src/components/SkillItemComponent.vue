@@ -7,20 +7,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'SkillItemComponent',
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    skills: {
-      type: Array,
-      required: true
-    }
+<script setup>
+defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  skills: {
+    type: Array,
+    required: true
   }
-}
+})
 </script>
 <style scoped>
 
