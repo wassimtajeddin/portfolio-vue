@@ -29,7 +29,7 @@
         </div>
       </div>
 
-            <div class="cv-section">
+      <div class="cv-section">
         <h3>Education</h3>
         <div class="cv-item">
           <h4>Java Developer — IT-högskolan, Gothenburg</h4>
@@ -100,11 +100,9 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: 'CvView'
-}
+<script setup>
 </script>
+
 <style scoped>
 
 .cv-section {
