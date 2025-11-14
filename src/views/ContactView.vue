@@ -52,74 +52,70 @@
   </main>
 </template>
 
-<script>
-export default {
-  name: 'ContactView',
-  data() {
-    return {
-      formData: {
-        name: '',
-        email: '',
-        message: ''
-      },
-      loading: false,
-      message: '',
-      isSuccess: false,
-      apiUrl: process.env.NODE_ENV === 'production' 
-        ? 'https://admin.wassimtajeddin.com/api/contact'
-        : 'http://localhost:3001/api/contact'
-    }
-  },
-  methods: {
-    async handleSubmit() {
-      if (!this.formData.name || !this.formData.email || !this.formData.message) {
-        this.showMessage('Please fill in all fields', false);
-        return;
-      }
-      
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.formData.email)) {
-        this.showMessage('Please enter a valid email address', false);
-        return;
-      }
-      
-      this.loading = true;
-      this.message = '';
-      
-      try {
-        const response = await fetch(this.apiUrl, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.formData)
-        });
+<script setup>
+import { ref, reactive } from 'vue'
 
-        const result = await response.json();
-        
-        if (response.ok && result.success) {
-          this.showMessage(result.msg || 'Message sent successfully!', true);
-          this.formData = { name: '', email: '', message: '' };
-        } else {
-          this.showMessage(result.msg || 'Something went wrong. Please try again.', false);
-        }
-      } catch (error) {
-        console.error('Request failed:', error);
-        this.showMessage('Failed to send message.', false);
-      } finally {
-        this.loading = false;
-      }
-    },
-    
-    showMessage(text, isSuccess) {
-      this.message = text;
-      this.isSuccess = isSuccess;
-      
-      setTimeout(() => {
-        this.message = '';
-      }, 5000);
-    }
+const formData = reactive({
+  name: '',
+  email: '',
+  message: ''
+})
+
+const loading = ref(false)
+const message = ref('')
+const isSuccess = ref(false)
+
+const apiUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://admin.wassimtajeddin.com/api/contact'
+  : 'http://localhost:3001/api/contact'
+
+async function handleSubmit() {
+  if (!formData.name || !formData.email || !formData.message) {
+    showMessage('Please fill in all fields', false)
+    return
   }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(formData.email)) {
+    showMessage('Please enter a valid email address', false)
+    return
+  }
+  
+  loading.value = true
+  message.value = ''
+  
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+
+    const result = await response.json()
+    
+    if (response.ok && result.success) {
+      showMessage(result.msg || 'Message sent successfully!', true)
+      Object.assign(formData, { name: '', email: '', message: '' })
+    } else {
+      showMessage(result.msg || 'Something went wrong. Please try again.', false)
+    }
+  } catch (error) {
+    console.error('Request failed:', error)
+    showMessage('Failed to send message.', false)
+  } finally {
+    loading.value = false
+  }
+}
+
+function showMessage(text, success) {
+  message.value = text
+  isSuccess.value = success
+  
+  setTimeout(() => {
+    message.value = ''
+  }, 5000)
 }
 </script>
 
