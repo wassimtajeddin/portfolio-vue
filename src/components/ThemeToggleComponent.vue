@@ -4,35 +4,31 @@
   </button>
 </template>
 
-<script>
-export default {
-  name: 'ThemeToggle',
-  data() {
-    return {
-      currentTheme: 'light'
-    }
-  },
-  computed: {
-    themeIcon() {
-      return this.currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun'
-    }
-  },
-  mounted() {
-    this.currentTheme = localStorage.getItem('theme') || 'light'
-    this.applyTheme(this.currentTheme)
-  },
-  methods: {
-    toggleTheme() {
-      this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark'
-      this.applyTheme(this.currentTheme)
-      localStorage.setItem('theme', this.currentTheme)
-    },
-    applyTheme(theme) {
-      document.body.setAttribute('data-theme', theme)
-    }
-  }
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+
+const currentTheme = ref('light')
+
+const themeIcon = computed(() => 
+  currentTheme.value === 'light' ? 'fas fa-moon' : 'fas fa-sun'
+)
+
+function applyTheme(theme) {
+  document.body.setAttribute('data-theme', theme)
 }
+
+function toggleTheme() {
+  currentTheme.value = currentTheme.value === 'dark' ? 'light' : 'dark'
+  applyTheme(currentTheme.value)
+  localStorage.setItem('theme', currentTheme.value)
+}
+
+onMounted(() => {
+  currentTheme.value = localStorage.getItem('theme') || 'light'
+  applyTheme(currentTheme.value)
+})
 </script>
+
 <style scoped>
 
 .theme-toggle {

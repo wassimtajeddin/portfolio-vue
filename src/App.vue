@@ -14,40 +14,32 @@
   </div>
 </template>
 
-<script>
-import "@/assets/style.css";
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import "@/assets/style.css"
 import HeaderComponent from './components/HeaderComponent.vue'
 import FooterComponent from './components/FooterComponent.vue'
 
-export default {
-  name: 'App',
-  data() {
-    return {
-      showScrollTop: false
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      this.showScrollTop = window.scrollY > 300;
-    },
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  },
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
+const showScrollTop = ref(false)
+
+function handleScroll() {
+  showScrollTop.value = window.scrollY > 300
 }
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>

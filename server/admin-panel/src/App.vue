@@ -1,148 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Messages Admin</title>
-</head>
-<body>
-    <button id="themeToggle" class="theme-toggle" title="Toggle dark/light mode">
-        <i class="fas fa-moon"></i>
+<template>
+  <div :data-theme="theme">
+    <button class="theme-toggle" @click="toggleTheme" :title="themeTitle">
+      <i :class="themeIcon"></i>
     </button>
+
     <div class="container">
-        <h1>Contact Messages Admin</h1>
-        <div class="stats">
-            <strong>Total Messages: <span id="totalCount">0</span></strong> | 
-            <strong>Unread: <span id="unreadCount">0</span></strong>
-        </div>
-        <div id="messagesList"></div>
+      <h1>Contact Messages Admin</h1>
+
+      <div class="stats">
+        <strong>Total Messages: {{ messages.length }}</strong> |
+        <strong>Unread: {{ unreadCount }}</strong>
+      </div>
+
+      <div v-if="messages.length" id="messagesList">
+        <MessageItem
+          v-for="m in messages"
+          :key="m._id"
+          :message="m"
+          @toggle-read="toggleReadStatus"
+          @delete="deleteMessage"
+        />
+      </div>
+
+      <div v-else id="messagesList"></div>
     </div>
-</body>
-</html>
+  </div>
+</template>
+
 <script>
-    let messages = [];
+import { ref, computed, onMounted, watch } from "vue";
+import MessageItem from "./components/MessageItem.vue";
+
+export default {
+  name: "App",
+  
+  components: {
+    MessageItem
+  },
+
+  setup() {
+    const messages = ref([]);
+    const theme = ref(localStorage.getItem("theme") || "light");
+
+    const unreadCount = computed(() => messages.value.filter(m => !m.read).length);
+    const themeIcon = computed(() => (theme.value === "light" ? "fas fa-moon" : "fas fa-sun"));
+    const themeTitle = computed(() => (theme.value === "light" ? "Switch to dark mode" : "Switch to light mode"));
 
     async function loadMessages() {
-        try {
-            const response = await fetch('/api/messages');
-            const data = await response.json();
-            
-            if (data.success) {
-                messages = data.messages;
-                displayMessages();
-                updateStats();
-            }
-        } catch (error) {
-            console.error('Error loading messages:', error);
-        }
+      try {
+        const res = await fetch("/api/messages");
+        const data = await res.json();
+        if (data.success) messages.value = data.messages;
+      } catch (err) {
+        console.error("Error loading messages:", err);
+      }
     }
 
-    function displayMessages() {
-        const container = document.getElementById('messagesList');
-        container.innerHTML = '';
-
-        messages.forEach(message => {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${message.read ? 'read' : 'unread'}`;
-            
-            messageDiv.innerHTML = `
-                <div class="message-header">
-                    <div class="message-info">
-                        <div class="name">${message.name}</div>
-                        <div class="email">${message.email}</div>
-                        <div class="date">${new Date(message.createdAt).toLocaleString()}</div>
-                    </div>
-                    <div class="message-actions">
-                        <button class="read-btn" onclick="toggleReadStatus('${message._id}', ${message.read})">
-                            ${message.read ? 'Mark Unread' : 'Mark Read'}
-                        </button>
-                        <button class="delete-btn" onclick="deleteMessage('${message._id}')">Delete</button>
-                    </div>
-                </div>
-                <div class="message-content">${message.message}</div>
-            `;
-            
-            container.appendChild(messageDiv);
-        });
+    async function toggleReadStatus(id, currentlyRead) {
+      const endpoint = currentlyRead ? "unread" : "read";
+      try {
+        const res = await fetch(`/api/messages/${id}/${endpoint}`, { method: "PUT" });
+        const data = await res.json();
+        if (data.success) loadMessages();
+      } catch (err) {
+        console.error("Error toggling read status:", err);
+      }
     }
 
-    function updateStats() {
-        const total = messages.length;
-        const unread = messages.filter(m => !m.read).length;
-        
-        document.getElementById('totalCount').textContent = total;
-        document.getElementById('unreadCount').textContent = unread;
+    async function deleteMessage(id) {
+      if (!confirm("Are you sure you want to delete this message?")) return;
+      try {
+        const res = await fetch(`/api/messages/${id}`, { method: "DELETE" });
+        const data = await res.json();
+        if (data.success) loadMessages();
+      } catch (err) {
+        console.error("Error deleting message:", err);
+      }
     }
 
-    async function toggleReadStatus(messageId, currentlyRead) {
-        try {
-            const endpoint = currentlyRead ? 'unread' : 'read';
-            const response = await fetch(`/api/messages/${messageId}/${endpoint}`, {
-                method: 'PUT'
-            });
-            
-            const data = await response.json();
-            if (data.success) {
-                loadMessages();
-            }
-        } catch (error) {
-            console.error('Error toggling read status:', error);
-        }
-    }
-
-    async function deleteMessage(messageId) {
-        if (confirm('Are you sure you want to delete this message?')) {
-            try {
-                const response = await fetch(`/api/messages/${messageId}`, {
-                    method: 'DELETE'
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    loadMessages();
-                }
-            } catch (error) {
-                console.error('Error deleting message:', error);
-            }
-        }
-    }
-
-    loadMessages();
-    setInterval(loadMessages, 30000);
-
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    applyTheme(currentTheme);
-    updateToggleIcon(currentTheme);
-    
-    themeToggle.addEventListener('click', toggleTheme);
-    
     function toggleTheme() {
-        const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        applyTheme(newTheme);
-        updateToggleIcon(newTheme);
-        localStorage.setItem('theme', newTheme);
+      theme.value = theme.value === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", theme.value);
     }
     
-    function applyTheme(theme) {
-        document.body.setAttribute('data-theme', theme);
-    }
-    
-    function updateToggleIcon(theme) {
-        if (theme === 'light') {
-            themeIcon.className = 'fas fa-moon';
-            themeToggle.setAttribute('title', 'Switch to dark mode');
-        } else {
-            themeIcon.className = 'fas fa-sun';
-            themeToggle.setAttribute('title', 'Switch to light mode');
-        }
-    }
+
+    onMounted(() => {
+      document.body.setAttribute("data-theme", theme.value);
+      loadMessages();
+      setInterval(loadMessages, 30000);
+    });
+
+    watch(theme, val => {
+      document.body.setAttribute("data-theme", val);
+    });
+
+    return {
+      messages,
+      theme,
+      unreadCount,
+      themeIcon,
+      themeTitle,
+      toggleReadStatus,
+      deleteMessage,
+      toggleTheme
+    };
+  }
+};
 </script>
 
 <style>
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
     :root {
@@ -499,5 +466,4 @@
     ::-webkit-scrollbar-thumb:hover {
         background: var(--accent-color);
     }
-    
 </style>

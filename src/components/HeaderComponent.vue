@@ -14,14 +14,8 @@
   </header>
 </template>
 
-<script>
+<script setup>
 import ThemeToggle from '@/components/ThemeToggleComponent.vue'
-export default {
-   components: {
-    ThemeToggle
-  },
-  name: 'HeaderComponent'
-}
 </script>
 <style scoped>
 
