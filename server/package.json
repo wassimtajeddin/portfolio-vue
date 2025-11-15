@@ -4,6 +4,7 @@
   "description": "Backend API for portfolio contact form",
   "main": "index.js",
   "scripts": {
+    "build": "cd admin-panel && npm install && npm run build",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
