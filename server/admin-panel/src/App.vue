@@ -57,15 +57,20 @@ export default {
     }
 
     async function toggleReadStatus(id, currentlyRead) {
-      const endpoint = currentlyRead ? "unread" : "read";
-      try {
-        const res = await fetch(`/api/messages/${id}/${endpoint}`, { method: "PUT" });
-        const data = await res.json();
-        if (data.success) loadMessages();
-      } catch (err) {
-        console.error("Error toggling read status:", err);
+        const endpoint = currentlyRead ? "unread" : "read";
+
+        fetch(`/api/messages/${id}/${endpoint}`, { method: "PUT" })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              messages.value = messages.value.map(m => {
+                if (m._id === id) m.read = !currentlyRead;
+                return m;
+              });
+            }
+          })
+          .catch(err => console.error("Error toggling read status:", err));
       }
-    }
 
     async function deleteMessage(id) {
       if (!confirm("Are you sure you want to delete this message?")) return;
@@ -110,7 +115,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
     :root {
             --primary-color: #0a0a0a;

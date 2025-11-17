@@ -21,26 +21,43 @@ router.get('/messages', async (req, res) => {
   }
 });
 
-router.put('/messages/:id/read-status', async (req, res) => {
+router.put('/messages/:id/read', async (req, res) => {
   try {
-    const { read } = req.body;
     const db = await connectDB();
     const collection = db.collection('contact_messages');
 
     const result = await collection.updateOne(
       { _id: new ObjectId(req.params.id) },
-      { $set: { read } }
+      { $set: { read: true } }
     );
 
     if (result.modifiedCount === 0) {
       return res.status(404).json({ success: false, msg: 'Message not found' });
     }
 
-    console.log(`Marked message ${req.params.id} as ${read ? 'read' : 'unread'}`);
-    res.status(200).json({
-      success: true,
-      msg: `Message marked as ${read ? 'read' : 'unread'}`
-    });
+    console.log(`Marked message ${req.params.id} as read`);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    handleError(res, error, 'Failed to mark message as read');
+  }
+});
+
+router.put('/messages/:id/unread', async (req, res) => {
+  try {
+    const db = await connectDB();
+    const collection = db.collection('contact_messages');
+
+    const result = await collection.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $set: { read: false } }
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ success: false, msg: 'Message not found' });
+    }
+
+    console.log(`Marked message ${req.params.id} as unread`);
+    res.status(200).json({ success: true });
   } catch (error) {
     handleError(res, error, 'Failed to update message');
   }
