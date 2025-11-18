@@ -35,7 +35,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
 
-app.use('/api', adminRoutes);
+app.use('/api', authenticate, adminRoutes);
 app.get('*', authenticate, (req, res) => {
   res.sendFile(path.join(__dirname,'admin-panel/dist/index.html'));
 });
