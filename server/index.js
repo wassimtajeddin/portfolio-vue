@@ -33,15 +33,56 @@ const adminRoutes = require('./admin');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
 
-app.use('*', (req, res, next) => {
-  authenticate(req, res, next);
+app.post('/api/contact', async (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ 
+      success: false, 
+      msg: 'Please fill in all fields' 
+    });
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ 
+      success: false, 
+      msg: 'Please enter a valid email address' 
+    });
+  }
+
+  try {
+    const database = await connectDB();
+    const collection = database.collection('contact_messages');
+
+    const result = await collection.insertOne({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      createdAt: new Date(),
+      read: false
+    });
+
+    console.log('Message stored in MongoDB with ID:', result.insertedId);
+
+    res.status(200).json({ 
+      success: true, 
+      msg: 'Message received successfully! I will get back to you soon.' 
+    });
+  } catch (error) {
+    console.error('Error storing message:', error);
+    res.status(500).json({ 
+      success: false, 
+      msg: 'Database error. Please try again.' 
+    });
+  }
 });
 
-app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
-app.use('/api', adminRoutes);
+app.use('/api', authenticate, adminRoutes);
 
-app.get('*', (req, res) => {
+app.get('*', authenticate, (req, res) => {
   res.sendFile(path.join(__dirname, 'admin-panel/dist/index.html'));
 });
 
