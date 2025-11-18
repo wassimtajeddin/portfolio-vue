@@ -3,7 +3,8 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: my-fullstack-app
+    image: wassimtajeddin/portfolio-vue-app:latest
+    container_name: portfolio-vue-app
     ports:
       - "3000:3000"
       - "8080:8080"
