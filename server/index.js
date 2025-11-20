@@ -92,13 +92,15 @@ app.post('/api/contact', async (req, res) => {
     const database = await connectDB();
     const collection = database.collection('contact_messages');
 
-    const result = await collection.insertOne({
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
+    const sanitizedData = {
+      name: String(name).trim().replace(/[{}$]/g, ''),
+      email: String(email).trim().replace(/[{}$]/g, ''),
+      message: String(message).trim().replace(/[{}$]/g, ''),
       createdAt: new Date(),
       read: false
-    });
+    };
+
+    const result = await collection.insertOne(sanitizedData);
 
     console.log('Message stored in MongoDB with ID:', result.insertedId);
 
