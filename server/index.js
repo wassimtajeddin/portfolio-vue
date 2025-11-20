@@ -38,7 +38,12 @@ app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:8080',
+  origin: [
+    'http://localhost:8080',
+    'https://wassimtajeddin.com',
+    'https://www.wassimtajeddin.com',
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
@@ -107,7 +112,8 @@ app.post('/api/contact', async (req, res) => {
       msg: 'Message received successfully! I will get back to you soon.' 
     });
   } catch (error) {
-    console.error('Error storing message:', error);
+    console.error('Error storing message:', error.message);
+    console.error('Full error:', error);
     res.status(500).json({ 
       success: false, 
       msg: 'Database error. Please try again.' 
