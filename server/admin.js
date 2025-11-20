@@ -23,6 +23,10 @@ router.get('/messages', async (req, res) => {
 
 router.put('/messages/:id/read', async (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ success: false, msg: 'Invalid ID format' });
+    }
+
     const db = await connectDB();
     const collection = db.collection('contact_messages');
 
@@ -44,6 +48,10 @@ router.put('/messages/:id/read', async (req, res) => {
 
 router.put('/messages/:id/unread', async (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ success: false, msg: 'Invalid ID format' });
+    }
+
     const db = await connectDB();
     const collection = db.collection('contact_messages');
 
@@ -65,6 +73,10 @@ router.put('/messages/:id/unread', async (req, res) => {
 
 router.delete('/messages/:id', async (req, res) => {
   try {
+    if (!ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ success: false, msg: 'Invalid ID format' });
+    }
+
     const db = await connectDB();
     const collection = db.collection('contact_messages');
 
