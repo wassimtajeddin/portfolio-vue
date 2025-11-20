@@ -7,6 +7,9 @@ node_modules
 .env.local
 .env.*.local
 server/.env
+.env.example.local
+.env.example.*.local
+server/.env.example
 
 
 # Log files

@@ -34,6 +34,7 @@ async function connectDB() {
 const authenticate = require('./auth');
 const adminRoutes = require('./admin');
 
+app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors({
@@ -44,16 +45,18 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP'
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false
 });
 app.use(limiter);
 
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 5, // limit contact form to 5 submissions per 15 minutes
-  message: 'Too many contact form submissions'
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false
 });
 app.use('/api/contact', contactLimiter);
 
