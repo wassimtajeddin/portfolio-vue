@@ -34,7 +34,7 @@ async function connectDB() {
 const authenticate = require('./auth');
 const adminRoutes = require('./admin');
 
-app.set('trust proxy', 1);
+app.set('trust proxy', true);
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors({
