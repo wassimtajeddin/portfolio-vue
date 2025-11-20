@@ -34,7 +34,7 @@ async function connectDB() {
 const authenticate = require('./auth');
 const adminRoutes = require('./admin');
 
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors({
@@ -48,7 +48,8 @@ const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  validate: false
 });
 app.use(limiter);
 
@@ -56,7 +57,8 @@ const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
+  validate: false
 });
 app.use('/api/contact', contactLimiter);
 
@@ -70,7 +72,6 @@ app.post('/api/contact', async (req, res) => {
     });
   }
 
-  // Input validation and sanitization
   if (typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
     return res.status(400).json({ success: false, msg: 'Invalid input types' });
   }
