@@ -1,15 +1,31 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    image: wassimtajeddin/portfolio-vue-app:latest
-    container_name: portfolio-vue-app
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: wassimtajeddin/portfolio-backend:latest
+    container_name: portfolio-backend
     ports:
-      - "3000:3000"
-      - "8080:8080"
+      - "3001:3001"
     environment:
       - NODE_ENV=production
+      - MONGODB_URI=mongodb+srv://wassimtajeddin:${DB_PASSWORD}@cluster.vxwsnsd.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    build: .
+    image: wassimtajeddin/portfolio-frontend:latest
+    container_name: portfolio-frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
     networks:
       - app-network
     restart: unless-stopped
