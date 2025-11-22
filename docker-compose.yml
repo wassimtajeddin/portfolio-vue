@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: wassimtajeddin/portfolio:backend-latest
+    image: wassimtajeddin/portfolio-vue:backend-latest
     container_name: portfolio-backend
     ports:
       - "3001:3001"
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: wassimtajeddin/portfolio:frontend-latest
+    image: wassimtajeddin/portfolio-vue:frontend-latest
     container_name: portfolio-frontend
     ports:
       - "8080:8080"
