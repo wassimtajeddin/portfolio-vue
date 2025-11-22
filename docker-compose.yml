@@ -2,10 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    image: wassimtajeddin/portfolio-backend:latest
+    image: wassimtajeddin/portfolio:backend-latest
     container_name: portfolio-backend
     ports:
       - "3001:3001"
@@ -17,8 +14,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: .
-    image: wassimtajeddin/portfolio-frontend:latest
+    image: wassimtajeddin/portfolio:frontend-latest
     container_name: portfolio-frontend
     ports:
       - "8080:8080"
