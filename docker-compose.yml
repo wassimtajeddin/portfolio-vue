@@ -6,9 +6,12 @@ services:
     container_name: portfolio-backend
     ports:
       - "3001:3001"
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb+srv://wassimtajeddin:${DB_PASSWORD}@cluster.vxwsnsd.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster
+      - PORT=3001
+      - FRONTEND_URL=http://localhost:8080
     networks:
       - app-network
     restart: unless-stopped
@@ -19,7 +22,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
+      - VUE_APP_API_URL=http://localhost:3001
     depends_on:
       - backend
     networks:
