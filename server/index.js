@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
+const csrf = require('csurf');
 require('dotenv').config();
 const path = require('path');
 const { MongoClient } = require('mongodb');
@@ -48,6 +49,10 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
+
+const csrfProtection = csrf({ cookie: true });
+app.use('/api/contact', csrfProtection);
+app.use('/api', csrfProtection);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -120,13 +125,15 @@ app.post('/api/contact', async (req, res) => {
     const database = await connectDB();
     const collection = database.collection('contact_messages');
 
-    const result = await collection.insertOne({
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
+    const sanitizedData = {
+      name: name.trim().replace(/[<>"'&]/g, ''),
+      email: email.trim().toLowerCase(),
+      message: message.trim().replace(/[<>]/g, ''),
       createdAt: new Date(),
       read: false
-    });
+    };
+    
+    const result = await collection.insertOne(sanitizedData);
 
     console.log('Message stored in MongoDB with ID:', result.insertedId);
 
