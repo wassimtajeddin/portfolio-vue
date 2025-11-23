@@ -67,6 +67,29 @@ const contactLimiter = rateLimit({
 });
 app.use('/api/contact', contactLimiter);
 
+app.get('/health', async (req, res) => {
+  try {
+
+    const database = await connectDB();
+    await database.admin().ping();
+    
+    res.status(200).json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+      database: 'connected',
+      version: process.version
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'unhealthy',
+      timestamp: new Date().toISOString(),
+      database: 'disconnected',
+      error: error.message
+    });
+  }
+});
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
@@ -117,6 +140,28 @@ app.post('/api/contact', async (req, res) => {
     res.status(500).json({ 
       success: false, 
       msg: 'Database error. Please try again.' 
+    });
+  }
+});
+
+app.get('/api/health', async (req, res) => {
+  try {
+    const database = await connectDB();
+    const collection = database.collection('contact_messages');
+    const count = await collection.countDocuments();
+    
+    res.status(200).json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      database: 'connected',
+      messages_count: count,
+      uptime: process.uptime()
+    });
+  } catch (error) {
+    res.status(503).json({
+      status: 'unhealthy',
+      database: 'error',
+      error: error.message
     });
   }
 });
