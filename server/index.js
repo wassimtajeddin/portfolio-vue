@@ -3,7 +3,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
+const crypto = require('crypto');
+const validator = require('validator');
 require('dotenv').config();
 const path = require('path');
 const { MongoClient } = require('mongodb');
@@ -50,9 +51,21 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
 
-const csrfProtection = csrf({ cookie: true });
-app.use('/api/contact', csrfProtection);
-app.use('/api', csrfProtection);
+function validateOrigin(req, res, next) {
+  const origin = req.get('Origin') || req.get('Referer');
+  const allowedOrigins = [
+    'http://localhost:8080',
+    'https://wassimtajeddin.com',
+    'https://www.wassimtajeddin.com'
+  ];
+  
+  if (origin && !allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+    return res.status(403).json({ success: false, msg: 'Forbidden' });
+  }
+  next();
+}
+
+app.use('/api', validateOrigin);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -113,8 +126,7 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ success: false, msg: 'Input too long' });
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
+  if (!validator.isEmail(email)) {
     return res.status(400).json({ 
       success: false, 
       msg: 'Please enter a valid email address' 

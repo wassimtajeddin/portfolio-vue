@@ -1,11 +1,7 @@
 const express = require('express');
 const { ObjectId } = require('mongodb');
-const csrf = require('csurf');
 const router = express.Router();
 const connectDB = require('./db');
-
-const csrfProtection = csrf({ cookie: true });
-router.use(csrfProtection);
 
 function handleError(res, error, message) {
   console.error(message, error);
