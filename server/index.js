@@ -51,21 +51,6 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'admin-panel/dist')));
 
-function validateOrigin(req, res, next) {
-  const origin = req.get('Origin') || req.get('Referer');
-  const allowedOrigins = [
-    'http://localhost:8080',
-    'https://wassimtajeddin.com',
-    'https://www.wassimtajeddin.com'
-  ];
-  
-  if (origin && !allowedOrigins.some(allowed => origin.startsWith(allowed))) {
-    return res.status(403).json({ success: false, msg: 'Forbidden' });
-  }
-  next();
-}
-
-app.use('/api', validateOrigin);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
