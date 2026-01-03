@@ -1,23 +1,83 @@
 <template>
   <header>
-    <ThemeToggle />
+    <div class="header-controls">
+      <ThemeToggle />
+    </div>
     <div class="header-container">
       <h1>Wassim Tajeddin</h1>
       <img src="../assets/ProfilePicture.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
-      <nav>
-        <router-link to="/" :class="{ active: $route.path === '/' }">Home</router-link>
-        <router-link to="/cv" :class="{ active: $route.path === '/cv' }">CV</router-link>
-        <router-link to="/projects" :class="{ active: $route.path === '/projects' }">Projects</router-link>
-        <router-link to="/contact" :class="{ active: $route.path === '/contact' }">Contact</router-link>
+      <button class="burger-menu" @click="toggleMenu" :class="{ active: isMenuOpen }">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav :class="{ open: isMenuOpen }">
+        <router-link to="/" :class="{ active: $route.path === '/' }" @click="closeMenu">Home</router-link>
+        <router-link to="/cv" :class="{ active: $route.path === '/cv' }" @click="closeMenu">CV</router-link>
+        <router-link to="/projects" :class="{ active: $route.path === '/projects' }" @click="closeMenu">Projects</router-link>
+        <router-link to="/contact" :class="{ active: $route.path === '/contact' }" @click="closeMenu">Contact</router-link>
       </nav>
     </div>
   </header>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import ThemeToggle from '@/components/ThemeToggleComponent.vue'
+
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
 </script>
 <style scoped>
+.header-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+.burger-menu span {
+  width: 25px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+.burger-menu.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.burger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
 
 .header-container {
   display: flex;
@@ -101,13 +161,33 @@ header h1 {
     height: 140px;
   }
 
-  nav {
-    gap: 1rem;
+  .burger-menu {
+    display: flex;
+  }
 
+  nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--secondary-color);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+    border-right: 1px solid var(--accent-color);
+  }
+
+  nav.open {
+    left: 0;
   }
 
   nav a {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    padding: 1rem;
   }
 }
 
