@@ -48,6 +48,7 @@ const closeMenu = () => {
   top: 1rem;
   right: 1rem;
   display: flex;
+  align-items: center;
   gap: 1rem;
   z-index: 10;
 }
@@ -179,6 +180,15 @@ header h1 {
 @media (max-width: 768px) {
   .header-container {
     padding: 1.2rem;
+  }
+
+  .header-controls {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
 
   header h1 {
