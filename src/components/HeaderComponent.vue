@@ -1,11 +1,16 @@
 <template>
   <header>
     <div class="header-controls">
+      <SearchComponent />
       <ThemeToggle />
     </div>
     <div class="header-container">
       <h1>Wassim Tajeddin</h1>
       <img src="../assets/ProfilePicture.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
+      <SocialLinks />
+      <a href="/cv" class="download-cv-btn" download>
+        <i class="fas fa-download"></i> Download CV
+      </a>
       <button class="burger-menu" @click="toggleMenu" :class="{ active: isMenuOpen }">
         <span></span>
         <span></span>
@@ -24,6 +29,8 @@
 <script setup>
 import { ref } from 'vue'
 import ThemeToggle from '@/components/ThemeToggleComponent.vue'
+import SocialLinks from '@/components/SocialLinksComponent.vue'
+import SearchComponent from '@/components/SearchComponent.vue'
 
 const isMenuOpen = ref(false)
 
@@ -121,6 +128,28 @@ const closeMenu = () => {
 .profile-pic:hover {
   transform: scale(1.03);
   box-shadow: 0 0 25px rgba(0, 212, 170, 0.5);
+}
+
+.download-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-color);
+  color: black;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent-color);
+}
+
+.download-cv-btn:hover {
+  background: transparent;
+  color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 212, 170, 0.3);
 }
 
 header h1::after {
