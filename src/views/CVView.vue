@@ -183,26 +183,26 @@
 }
 
 .download-cv-fab {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 1000;
-
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-
-  background: var(--accent-color);
-  color: black;
-  padding: 0.9rem 1.4rem;
-  border-radius: 999px;
-
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 10px 30px rgba(0, 212, 170, 0.35);
-  border: 2px solid var(--accent-color);
-
-  transition: all 0.3s ease;
+    position: fixed;
+    bottom: 2rem;
+    right: 6rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--accent-color);
+    color: black;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0, 212, 170, 0.35);
+    border: 2px solid var(--accent-color);
+    transition: all 0.3s ease;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .download-cv-fab:hover {
@@ -212,6 +212,10 @@
 }
 
 @media (max-width: 768px) {
+  .download-cv-fab {
+    right: 6rem;
+  }
+
   .download-cv-fab span {
     display: none;
   }
