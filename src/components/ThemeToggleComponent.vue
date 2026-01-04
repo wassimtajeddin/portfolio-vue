@@ -5,8 +5,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, inject } from 'vue'
 
+const notification = inject('notification')
 const currentTheme = ref('light')
 
 const themeIcon = computed(() => 
@@ -21,6 +22,9 @@ function toggleTheme() {
   currentTheme.value = currentTheme.value === 'dark' ? 'light' : 'dark'
   applyTheme(currentTheme.value)
   localStorage.setItem('theme', currentTheme.value)
+  
+  const themeName = currentTheme.value === 'dark' ? 'Dark' : 'Light'
+  notification.value?.addNotification(`${themeName} mode activated`, 'info')
 }
 
 onMounted(() => {
