@@ -98,7 +98,7 @@
       </div>
     </section>
   </main>
-  <a href="/cv.pdf" class="download-cv-fab" download="YourName-CV.pdf">
+  <a href="/Wassim_Tajeddin_-_Software_Developer.pdf" class="download-cv-fab" download="Wassim_Tajeddin_-_Software_Developer.pdf">
   <i class="fas fa-download"></i>
   <span>Download CV</span>
 </a>
