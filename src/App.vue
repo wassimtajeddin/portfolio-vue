@@ -6,6 +6,7 @@
     <router-view />
     <FooterComponent />
     <BackToTop />
+    <NotificationComponent ref="notification" />
   </div>
 </template>
 
