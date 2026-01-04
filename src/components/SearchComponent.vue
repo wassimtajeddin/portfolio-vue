@@ -81,6 +81,9 @@ const navigateToResult = (result) => {
   position: relative;
   width: 100%;
   max-width: 300px;
+  right: 3rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 999px;
 }
 
 .search-input-wrapper {
@@ -100,7 +103,7 @@ const navigateToResult = (result) => {
 .search-input {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
-  border: 2px solid transparent;
+  border: 0.3px solid transparent;
   border-radius: 25px;
   background: var(--secondary-color);
   color: var(--text-color);
@@ -111,7 +114,7 @@ const navigateToResult = (result) => {
 .search-input:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+  box-shadow: 0 0 0 5px rgba(0, 212, 170, 0.1);
 }
 
 .clear-btn {

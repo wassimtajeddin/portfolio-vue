@@ -37,13 +37,13 @@ onMounted(() => {
 
 .theme-toggle {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 1rem;
+  right: 1rem;
   background: var(--secondary-color);
   border: 1px solid var(--accent-color);
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,17 +62,6 @@ onMounted(() => {
   font-size: 1.5rem;
   color: var(--accent-color);
   transition: var(--transition);
-}
-
-.theme-toggle {
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-}
-
-.theme-toggle i {
-  font-size: 1.2rem;
 }
 
 </style>
