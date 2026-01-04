@@ -98,6 +98,10 @@
       </div>
     </section>
   </main>
+  <a href="/cv.pdf" class="download-cv-fab" download="YourName-CV.pdf">
+  <i class="fas fa-download"></i>
+  <span>Download CV</span>
+</a>
 </template>
 
 <script setup>
@@ -176,6 +180,45 @@
   font-style: italic;
   margin-bottom: 0.8rem;
   font-weight: 500;
+}
+
+.download-cv-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  background: var(--accent-color);
+  color: black;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 212, 170, 0.35);
+  border: 2px solid var(--accent-color);
+
+  transition: all 0.3s ease;
+}
+
+.download-cv-fab:hover {
+  background: transparent;
+  color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .download-cv-fab span {
+    display: none;
+  }
+
+  .download-cv-fab {
+    padding: 0.9rem;
+  }
 }
 
 </style>
