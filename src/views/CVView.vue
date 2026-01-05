@@ -5,7 +5,7 @@
       
       <div class="cv-section">
         <h3>Profile</h3>
-        <p>Junior software developer skilled in Java and Python, with experience in AI and machine learning. Passionate about new technologies and continuous learning.</p>
+        <p>A junior software developer skilled in Java and Python, with experience in AI and machine learning. Passionate about new technologies and continuous learning.</p>
       </div>
 
       <div class="cv-section">
@@ -50,7 +50,7 @@
 
         <div class="cv-item">
           <h4>Cloud Development with AWS — IT-högskolan, Gothenburg</h4>
-          <div class="date">Oct 2025 - Present</div>
+          <div class="date">Oct 2025 - Dec 2025</div>
           <ul>
             <li>Learning AWS services, cloud deployment, and serverless architecture</li>
           </ul>
