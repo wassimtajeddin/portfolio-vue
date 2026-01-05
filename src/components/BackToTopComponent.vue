@@ -5,7 +5,7 @@
     class="back-to-top"
     aria-label="Back to top"
   >
-    ↑
+    <i class="fas fa-chevron-up"></i>
   </button>
 </template>
 
@@ -42,7 +42,7 @@ onUnmounted(() => {
     color: black;
     border: none;
     border-radius: 50%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     z-index: 1000;
