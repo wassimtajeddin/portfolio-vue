@@ -1,5 +1,7 @@
 # portfolio-vue
 
+A Vue.js portfolio website showcasing my projects and skills.
+
 ## Project setup
 ```
 npm install
