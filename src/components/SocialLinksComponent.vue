@@ -23,7 +23,7 @@ const socialLinks = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://linkedin.com/in/wassim-tajeddin',
+    url: 'https://linkedin.com/in/wassim-tajeddin-82a563201/',
     icon: 'fab fa-linkedin'
   },
   {
