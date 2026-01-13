@@ -58,4 +58,11 @@ onUnmounted(() => {
   box-shadow: 0 6px 20px rgba(0, 212, 170, 0.5);
 }
 
+@media (max-width: 768px) {
+  .back-to-top {
+bottom: 4rem;
+}
+
+}
+
 </style>

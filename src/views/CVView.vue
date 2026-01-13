@@ -214,6 +214,7 @@
 @media (max-width: 768px) {
   .download-cv-fab {
     right: 6rem;
+    bottom: 4rem;
   }
 
   .download-cv-fab span {
