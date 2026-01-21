@@ -1,10 +1,8 @@
 <template>
   <header>
-    <div class="header-controls">
-      <SearchComponent />
-      <ThemeToggle />
-    </div>
     <div class="header-container">
+       <SearchComponent />
+      <ThemeToggle />
       <h1>Wassim Tajeddin</h1>
       <img src="../assets/ProfilePicture.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
       <SocialLinks />
