@@ -1,8 +1,10 @@
 <template>
   <header>
     <div class="header-container">
-       <SearchComponent />
-      <ThemeToggle />
+      <div class="header-controls">
+        <SearchComponent />
+        <ThemeToggle />
+      </div>
       <h1>Wassim Tajeddin</h1>
       <img src="../assets/ProfilePicture.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
       <SocialLinks />
@@ -46,6 +48,15 @@ const closeMenu = () => {
   align-items: center;
   gap: 1rem;
   z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    position: static;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
 }
 
 .burger-menu {
@@ -153,15 +164,6 @@ header h1 {
 @media (max-width: 768px) {
   .header-container {
     padding: 1.2rem;
-  }
-
-  .header-controls {
-    position: relative;
-    top: auto;
-    right: auto;
-    justify-content: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
   }
 
   header h1 {
