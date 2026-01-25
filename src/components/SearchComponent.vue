@@ -84,6 +84,7 @@ const navigateToResult = (result) => {
   right: 3rem;
   border: 1px solid var(--accent-color);
   border-radius: 999px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-input-wrapper {
