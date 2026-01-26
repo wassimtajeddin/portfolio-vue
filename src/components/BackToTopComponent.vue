@@ -59,7 +59,7 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-  .back-to-top {
+.back-to-top {
 bottom: 4rem;
 }
 

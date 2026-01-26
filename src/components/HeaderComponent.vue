@@ -50,15 +50,6 @@ const closeMenu = () => {
   z-index: 10;
 }
 
-@media (max-width: 768px) {
-  .header-controls {
-    position: static;
-    justify-content: center;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-  }
-}
-
 .burger-menu {
   display: none;
   flex-direction: column;
@@ -161,7 +152,26 @@ header h1 {
   display: inline-block;
 }
 
+@media (max-width: 992px) {
+
+  .header-controls {
+    position: static;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+}
+
 @media (max-width: 768px) {
+
+  .header-controls {
+    position: static;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
   .header-container {
     padding: 1.2rem;
   }
