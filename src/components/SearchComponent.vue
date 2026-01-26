@@ -206,26 +206,24 @@ const navigateToResult = (result) => {
 
 .clear-btn {
   position: absolute;
-  right: 1rem;
+  right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--text-color);
   font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
+  color: var(--text-color);
 }
 
 .search-results {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.5rem);
   left: 0;
   right: 0;
   background: var(--secondary-color);
-  border: 1px solid rgba(0, 212, 170, 0.2);
   border-radius: 8px;
-  margin-top: 0.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
@@ -238,7 +236,7 @@ const navigateToResult = (result) => {
 
 .search-result-item:hover,
 .search-result-item.active {
-  background: rgba(0, 212, 170, 0.1);
+  background: rgba(0, 212, 170, 0.15);
 }
 
 .result-type {
@@ -249,12 +247,10 @@ const navigateToResult = (result) => {
 
 .result-title {
   font-weight: 600;
-  color: var(--text-color);
 }
 
 .result-description {
   font-size: 0.85rem;
-  color: var(--text-color);
   opacity: 0.8;
 }
 
