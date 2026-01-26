@@ -258,4 +258,11 @@ const navigateToResult = (result) => {
   padding: 1rem;
   opacity: 0.7;
 }
+
+@media (max-width: 480px) {
+  .search-container.expanded {
+    width: 90%;
+  }  
+}
+
 </style>

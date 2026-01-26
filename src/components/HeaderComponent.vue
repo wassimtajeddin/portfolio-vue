@@ -5,8 +5,8 @@
         <SearchComponent />
         <ThemeToggle />
       </div>
-      <h1>Wassim Tajeddin</h1>
       <img src="../assets/ProfilePicture.png" alt="Photo of Wassim Tajeddin" class="profile-pic">
+      <h1>Wassim Tajeddin</h1>
       <SocialLinks />
       <button class="burger-menu" @click="toggleMenu" :class="{ active: isMenuOpen }">
         <span></span>
@@ -204,7 +204,7 @@ header h1 {
   }
 
   header h1 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
 
   .profile-pic {
@@ -216,4 +216,16 @@ header h1 {
     padding: 1rem;
   }
 }
+@media (max-width: 400px) {
+
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 </style>

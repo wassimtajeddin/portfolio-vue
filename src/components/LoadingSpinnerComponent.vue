@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-  .back-to-top {
+.back-to-top {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
