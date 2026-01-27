@@ -146,6 +146,7 @@ header h1::after {
 .header-container:hover header h1::after {
   width: 100%;
 }
+
 @media (max-width: 768px) {
   .header-container {
     padding: 1.2rem;
