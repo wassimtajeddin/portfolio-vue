@@ -31,13 +31,8 @@ import SearchComponent from '@/components/SearchComponent.vue'
 
 const isMenuOpen = ref(false)
 
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-}
-
-const closeMenu = () => {
-  isMenuOpen.value = false
-}
+const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value
+const closeMenu = () => isMenuOpen.value = false
 </script>
 <style scoped>
 .header-controls {
@@ -128,6 +123,15 @@ const closeMenu = () => {
   box-shadow: 0 0 25px rgba(0, 212, 170, 0.5);
 }
 
+header h1 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  font-size: 2.2rem;
+  position: relative;
+  display: inline-block;
+}
+
 header h1::after {
   content: '';
   position: absolute;
@@ -143,18 +147,8 @@ header h1::after {
   width: 100%;
 }
 
-header h1 {
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  font-size: 2.2rem;
-  position: relative;
-  display: inline-block;
-}
-
 
 @media (max-width: 768px) {
-
   .header-container {
     padding: 1.2rem;
   }
@@ -211,13 +205,8 @@ header h1 {
     width: 120px;
     height: 120px;
   }
-
-  main {
-    padding: 1rem;
-  }
 }
 @media (max-width: 400px) {
-
   header h1 {
     font-size: 1.1rem;
   }
