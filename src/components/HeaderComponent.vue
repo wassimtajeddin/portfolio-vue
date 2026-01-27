@@ -146,8 +146,6 @@ header h1::after {
 .header-container:hover header h1::after {
   width: 100%;
 }
-
-
 @media (max-width: 768px) {
   .header-container {
     padding: 1.2rem;
@@ -206,6 +204,7 @@ header h1::after {
     height: 120px;
   }
 }
+
 @media (max-width: 400px) {
   header h1 {
     font-size: 1.1rem;
