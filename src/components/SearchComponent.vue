@@ -95,8 +95,15 @@ const searchData = [
   { id: 3, type: 'Project', title: 'QuizHub', description: 'Trivia game application', route: '/projects' },
   { id: 4, type: 'Skill', title: 'Vue.js', description: 'Frontend framework', route: '/' },
   { id: 5, type: 'Skill', title: 'Java', description: 'Backend programming language', route: '/' },
-  { id: 6, type: 'Page', title: 'Contact', description: 'Get in touch', route: '/contact' },
-  { id: 7, type: 'Page', title: 'CV', description: 'Resume and experience', route: '/cv' }
+  { id: 6, type: 'Skill', title: 'Spring Boot', description: 'Java framework for building applications', route: '/' },
+  { id: 7, type: 'Skill', title: 'JavaScript', description: 'Programming language for web development', route: '/' },
+  { id: 8, type: 'Skill', title: 'HTML/CSS', description: 'Web markup and styling languages', route: '/' },
+  { id: 9, type: 'Skill', title: 'Node.js', description: 'JavaScript runtime environment', route: '/' },
+  { id: 10, type: 'Skill', title: 'MySQL', description: 'Relational database management system', route: '/' },
+  { id: 11, type: 'Page', title: 'Contact', description: 'Get in touch', route: '/contact' },
+  { id: 12, type: 'Page', title: 'CV', description: 'Resume and experience', route: '/cv' },
+  { id: 13, type: 'Page', title: 'Home', description: 'Main landing page', route: '/' },
+  { id: 14, type: 'Page', title: 'Projects', description: 'Portfolio of work', route: '/projects' }
 ]
 
 const results = computed(() => {
