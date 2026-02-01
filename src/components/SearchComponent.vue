@@ -90,20 +90,55 @@ const clearSearch = () => {
 }
 
 const searchData = [
+  // Projects
   { id: 1, type: 'Project', title: 'Portfolio Vue App', description: 'Vue.js application with Node.js API', route: '/projects' },
   { id: 2, type: 'Project', title: 'Person Management API', description: 'Spring Boot REST API', route: '/projects' },
   { id: 3, type: 'Project', title: 'QuizHub', description: 'Trivia game application', route: '/projects' },
-  { id: 4, type: 'Skill', title: 'Vue.js', description: 'Frontend framework', route: '/' },
+  { id: 4, type: 'Project', title: 'MNIST Sifferigenkänning', description: 'Machine learning digit recognition', route: '/projects' },
+  
+  // Backend Skills
   { id: 5, type: 'Skill', title: 'Java', description: 'Backend programming language', route: '/' },
   { id: 6, type: 'Skill', title: 'Spring Boot', description: 'Java framework for building applications', route: '/' },
-  { id: 7, type: 'Skill', title: 'JavaScript', description: 'Programming language for web development', route: '/' },
-  { id: 8, type: 'Skill', title: 'HTML/CSS', description: 'Web markup and styling languages', route: '/' },
-  { id: 9, type: 'Skill', title: 'Node.js', description: 'JavaScript runtime environment', route: '/' },
-  { id: 10, type: 'Skill', title: 'MySQL', description: 'Relational database management system', route: '/' },
-  { id: 11, type: 'Page', title: 'Contact', description: 'Get in touch', route: '/contact' },
-  { id: 12, type: 'Page', title: 'CV', description: 'Resume and experience', route: '/cv' },
-  { id: 13, type: 'Page', title: 'Home', description: 'Main landing page', route: '/' },
-  { id: 14, type: 'Page', title: 'Projects', description: 'Portfolio of work', route: '/projects' }
+  { id: 7, type: 'Skill', title: 'Python', description: 'Programming language for development and ML', route: '/' },
+  { id: 8, type: 'Skill', title: 'Node.js', description: 'JavaScript runtime environment', route: '/' },
+  
+  // Frontend Skills
+  { id: 9, type: 'Skill', title: 'Vue.js', description: 'Frontend framework', route: '/' },
+  { id: 10, type: 'Skill', title: 'JavaScript', description: 'Programming language for web development', route: '/' },
+  { id: 11, type: 'Skill', title: 'HTML/CSS', description: 'Web markup and styling languages', route: '/' },
+  
+  // Database Skills
+  { id: 12, type: 'Skill', title: 'MySQL', description: 'Relational database management system', route: '/' },
+  { id: 13, type: 'Skill', title: 'SQLite', description: 'Lightweight database engine', route: '/' },
+  { id: 14, type: 'Skill', title: 'MongoDB', description: 'NoSQL document database', route: '/' },
+  
+  // DevOps Skills
+  { id: 15, type: 'Skill', title: 'Docker', description: 'Containerization platform', route: '/' },
+  { id: 16, type: 'Skill', title: 'Azure', description: 'Microsoft cloud platform', route: '/' },
+  
+  // Cloud Skills
+  { id: 17, type: 'Skill', title: 'AWS', description: 'Amazon cloud services', route: '/' },
+  
+  // Methodologies
+  { id: 18, type: 'Skill', title: 'Agile (Scrum)', description: 'Software development methodology', route: '/' },
+  { id: 19, type: 'Skill', title: 'CI/CD', description: 'Continuous integration and deployment', route: '/' },
+  { id: 20, type: 'Skill', title: 'TDD', description: 'Test-driven development', route: '/' },
+  
+  // AI/ML Skills
+  { id: 21, type: 'Skill', title: 'TensorFlow', description: 'Machine learning framework', route: '/' },
+  { id: 22, type: 'Skill', title: 'ML Models', description: 'Machine learning model development', route: '/' },
+  
+  // Additional Tech
+  { id: 23, type: 'Skill', title: 'JPA/Hibernate', description: 'Java persistence framework', route: '/' },
+  { id: 24, type: 'Skill', title: 'CNN model', description: 'Convolutional neural networks', route: '/' },
+  { id: 25, type: 'Skill', title: 'TensorFlow/Keras', description: 'Deep learning frameworks', route: '/' },
+  { id: 26, type: 'Skill', title: 'GitHub Actions', description: 'CI/CD automation platform', route: '/' },
+  
+  // Pages
+  { id: 27, type: 'Page', title: 'Contact', description: 'Get in touch', route: '/contact' },
+  { id: 28, type: 'Page', title: 'CV', description: 'Resume and experience', route: '/cv' },
+  { id: 29, type: 'Page', title: 'Home', description: 'Main landing page', route: '/' },
+  { id: 30, type: 'Page', title: 'Projects', description: 'Portfolio of work', route: '/projects' }
 ]
 
 const results = computed(() => {
