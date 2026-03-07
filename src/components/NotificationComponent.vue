@@ -52,8 +52,8 @@ defineExpose({ addNotification })
 <style scoped>
 .notification-container {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 4.5rem;
+  right: 0.5rem;
   z-index: 10000;
   display: flex;
   flex-direction: column;
