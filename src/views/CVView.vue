@@ -58,7 +58,7 @@
 
         <div class="cv-item">
           <h4>Architecture and System Design — IT-högskolan, Gothenburg</h4>
-          <div class="date">Nov 2025 - Present</div>
+          <div class="date">Nov 2025 - Feb 2026</div>
           <ul>
             <li>Studying scalable system architecture, design patterns, and best practices</li>
           </ul>
