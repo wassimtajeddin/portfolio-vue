@@ -71,6 +71,8 @@ const expandSearch = async () => {
   isExpanded.value = true
   await nextTick()
   searchInput.value?.focus()
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const handleBlur = () => {
@@ -178,7 +180,7 @@ const results = computed(() => {
       item.type.toLowerCase().includes(q) ||
       item.description.toLowerCase().includes(q)
     )
-    .slice(0, 5)
+    .slice(0, 10)
 })
 
 const handleSearch = () => {
@@ -296,6 +298,8 @@ const navigateToResult = (result) => {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .search-result-item {
