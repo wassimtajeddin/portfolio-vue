@@ -7,17 +7,23 @@
 <script setup>
 import { ref, computed, onMounted, inject } from 'vue'
 
+// Inject notification system
 const notification = inject('notification')
+
+// Current theme state (light/dark)
 const currentTheme = ref('light')
 
+// Compute icon based on current theme
 const themeIcon = computed(() => 
   currentTheme.value === 'light' ? 'fas fa-moon' : 'fas fa-sun'
 )
 
+// Apply theme to document body
 function applyTheme(theme) {
   document.body.setAttribute('data-theme', theme)
 }
 
+// Toggle between light and dark themes
 function toggleTheme() {
   currentTheme.value = currentTheme.value === 'dark' ? 'light' : 'dark'
   applyTheme(currentTheme.value)
@@ -27,6 +33,7 @@ function toggleTheme() {
   notification.value?.addNotification(`${themeName} mode activated`, 'info')
 }
 
+// Load saved theme on mount
 onMounted(() => {
   currentTheme.value = localStorage.getItem('theme') || 'light'
   applyTheme(currentTheme.value)
