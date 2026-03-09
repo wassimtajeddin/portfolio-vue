@@ -29,9 +29,13 @@ import ThemeToggle from '@/components/ThemeToggleComponent.vue'
 import SocialLinks from '@/components/SocialLinksComponent.vue'
 import SearchComponent from '@/components/SearchComponent.vue'
 
+// Mobile menu state
 const isMenuOpen = ref(false)
 
+// Toggle mobile menu open/close
 const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value
+
+// Close mobile menu
 const closeMenu = () => isMenuOpen.value = false
 </script>
 <style scoped>
