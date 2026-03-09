@@ -61,12 +61,14 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+// Search state management
 const searchQuery = ref('')
 const showResults = ref(false)
 const isExpanded = ref(false)
 const searchInput = ref(null)
 const activeIndex = ref(-1)
 
+// Expand search input and focus
 const expandSearch = async () => {
   isExpanded.value = true
   await nextTick()
@@ -75,6 +77,7 @@ const expandSearch = async () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+// Handle blur event - collapse if empty
 const handleBlur = () => {
   setTimeout(() => {
     if (!searchQuery.value) {
@@ -84,6 +87,7 @@ const handleBlur = () => {
   }, 150)
 }
 
+// Clear search and reset state
 const clearSearch = () => {
   searchQuery.value = ''
   showResults.value = false
@@ -91,6 +95,7 @@ const clearSearch = () => {
   activeIndex.value = -1
 }
 
+// Comprehensive search data: projects, skills, experience, education, pages
 const searchData = [
   // Projects
   { id: 1, type: 'Project', title: 'Portfolio Vue App', description: 'Vue.js application with Node.js API', route: '/projects' },
@@ -171,6 +176,7 @@ const searchData = [
   { id: 54, type: 'Page', title: 'Projects', description: 'Portfolio of work', route: '/projects' }
 ]
 
+// Filter and return matching results (max 10)
 const results = computed(() => {
   if (!searchQuery.value) return []
   const q = searchQuery.value.toLowerCase()
@@ -183,11 +189,13 @@ const results = computed(() => {
     .slice(0, 10)
 })
 
+// Show results when typing
 const handleSearch = () => {
   showResults.value = true
   activeIndex.value = -1
 }
 
+// Keyboard navigation
 const moveDown = () => {
   if (activeIndex.value < results.value.length - 1) activeIndex.value++
 }
@@ -202,6 +210,7 @@ const selectActive = () => {
   }
 }
 
+// Navigate to result and clear
 const navigateToResult = (result) => {
   router.push(result.route)
   clearSearch()
