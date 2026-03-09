@@ -18,8 +18,10 @@
 <script setup>
 import { ref } from 'vue'
 
+// Array to store active notifications
 const notifications = ref([])
 
+// Add a new notification with auto-dismiss
 const addNotification = (message, type = 'info', duration = 4000) => {
   const id = Date.now()
   notifications.value.push({ id, message, type })
@@ -29,6 +31,7 @@ const addNotification = (message, type = 'info', duration = 4000) => {
   }, duration)
 }
 
+// Remove notification by ID
 const removeNotification = (id) => {
   const index = notifications.value.findIndex(n => n.id === id)
   if (index > -1) {
@@ -36,6 +39,7 @@ const removeNotification = (id) => {
   }
 }
 
+// Get icon class based on notification type
 const getIcon = (type) => {
   const icons = {
     success: 'fas fa-check-circle',
@@ -46,6 +50,7 @@ const getIcon = (type) => {
   return icons[type] || icons.info
 }
 
+// Expose addNotification for parent components
 defineExpose({ addNotification })
 </script>
 
