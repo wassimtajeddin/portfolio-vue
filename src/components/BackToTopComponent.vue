@@ -12,20 +12,25 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// Button visibility state
 const isVisible = ref(false)
 
+// Show button when scrolled down 300px
 const handleScroll = () => {
   isVisible.value = window.scrollY > 300
 }
 
+// Smooth scroll to top
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
+// Add scroll listener on mount
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 })
 
+// Remove scroll listener on unmount
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
