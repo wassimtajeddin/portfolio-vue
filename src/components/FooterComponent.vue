@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+// Footer component - displays copyright and social links
 </script>
 <style scoped>
 
