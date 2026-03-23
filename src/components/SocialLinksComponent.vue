@@ -15,6 +15,7 @@
 </template>
 
 <script setup>
+// Social media links configuration
 const socialLinks = [
   {
     name: 'GitHub',
