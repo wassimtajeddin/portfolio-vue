@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+// Props for skill category and list
 defineProps({
   title: {
     type: String,
