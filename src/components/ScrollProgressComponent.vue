@@ -5,18 +5,22 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// Scroll progress percentage
 const progress = ref(0)
 
+// Calculate scroll progress as percentage
 const updateProgress = () => {
   const scrollTop = window.scrollY
   const docHeight = document.documentElement.scrollHeight - window.innerHeight
   progress.value = (scrollTop / docHeight) * 100
 }
 
+// Add scroll listener on mount
 onMounted(() => {
   window.addEventListener('scroll', updateProgress)
 })
 
+// Remove scroll listener on unmount
 onUnmounted(() => {
   window.removeEventListener('scroll', updateProgress)
 })
