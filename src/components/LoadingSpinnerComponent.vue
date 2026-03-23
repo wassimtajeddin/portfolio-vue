@@ -11,8 +11,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
+// Loading state
 const isLoading = ref(true)
 
+// Hide loading spinner after 1 second
 onMounted(() => {
   setTimeout(() => {
     isLoading.value = false
