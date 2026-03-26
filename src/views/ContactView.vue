@@ -6,7 +6,7 @@
       <div class="contact-container">
         <div class="contact-info">
           <h3>Get in Touch</h3>
-          <div class="contact-detail">
+          <div class="contact-detail" @click="copyEmail" style="cursor:pointer">
             <i class="fas fa-envelope"></i>
             <span>wassim.tajeddin@gmail.com</span>
           </div>
@@ -53,7 +53,14 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, inject } from 'vue'
+
+const notification = inject('notification')
+
+const copyEmail = async () => {
+  await navigator.clipboard.writeText('wassim.tajeddin@gmail.com')
+  notification.value.addNotification('Email copied!', 'info')
+}
 
 const formData = reactive({
   name: '',
