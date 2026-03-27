@@ -10,7 +10,7 @@
             <i class="fas fa-envelope"></i>
             <span>wassim.tajeddin@gmail.com</span>
           </div>
-          <div class="contact-detail">
+          <div class="contact-detail" @click="copyPhone" style="cursor:pointer">
             <i class="fas fa-phone"></i>
             <span>+46 736 842 961</span>
           </div>
@@ -60,6 +60,11 @@ const notification = inject('notification')
 const copyEmail = async () => {
   await navigator.clipboard.writeText('wassim.tajeddin@gmail.com')
   notification.value.addNotification('Email copied!', 'info')
+}
+
+const copyPhone = async () => {
+  await navigator.clipboard.writeText('+46736842961')
+  notification.value.addNotification('Phone number copied!', 'info')
 }
 
 const formData = reactive({
