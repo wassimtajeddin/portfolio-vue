@@ -37,7 +37,10 @@
             </div>
             <div class="form-group">
               <label for="message">Your Message</label>
-              <textarea id="message" v-model="formData.message" rows="5" required></textarea>
+              <textarea id="message" v-model="formData.message" rows="5" required maxlength="500"></textarea>
+              <span class="char-counter" :class="{ warning: formData.message.length > 450 }">
+                {{ formData.message.length }}/500
+              </span>
             </div>
             <button type="submit" class="submit-btn" :disabled="loading">
               {{ loading ? 'Sending...' : 'Send Message' }}
@@ -311,6 +314,21 @@ function showMessage(text, success) {
 
 .contact-detail span {
   word-break: break-word;
+}
+
+.char-counter {
+  display: block;
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  margin-top: 0.3rem;
+  opacity: 0.7;
+}
+
+.char-counter.warning {
+  color: #ef4444;
+  opacity: 1;
+  font-weight: 600;
 }
 
 @media (max-width: 992px) {
