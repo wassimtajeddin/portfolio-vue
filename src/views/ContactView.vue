@@ -14,7 +14,7 @@
             <i class="fas fa-phone"></i>
             <span>+46 736 842 961</span>
           </div>
-          <div class="contact-detail">
+          <div class="contact-detail" @click="openMaps" style="cursor:pointer">
             <i class="fas fa-map-marker-alt"></i>
             <span>Malmö, Sweden</span>
           </div>
@@ -65,6 +65,10 @@ const copyEmail = async () => {
 const copyPhone = async () => {
   await navigator.clipboard.writeText('+46736842961')
   notification.value.addNotification('Phone number copied!', 'info')
+}
+
+const openMaps = () => {
+  window.open('https://maps.google.com/?q=Malmö,Sweden', '_blank', 'noopener,noreferrer')
 }
 
 const formData = reactive({
