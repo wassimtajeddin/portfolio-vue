@@ -375,4 +375,17 @@ function launchConfetti() {
   padding: 0rem;
 }
 }
+.confetti-piece {
+  position: fixed;
+  top: 0;
+  border-radius: 2px;
+  z-index: 99999;
+  pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
 </style>
