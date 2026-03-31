@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, inject } from 'vue'
+import { ref, reactive, inject, watch } from 'vue'
 
 const notification = inject('notification')
 
@@ -74,11 +74,15 @@ const openMaps = () => {
   window.open('https://maps.google.com/?q=Malmö,Sweden', '_blank', 'noopener,noreferrer')
 }
 
-const formData = reactive({
-  name: '',
-  email: '',
-  message: ''
-})
+const DRAFT_KEY = 'contact_form_draft'
+
+const formData = reactive(
+  JSON.parse(localStorage.getItem(DRAFT_KEY) || '{"name":"","email":"","message":""}')
+)
+
+watch(formData, (val) => {
+  localStorage.setItem(DRAFT_KEY, JSON.stringify(val))
+}, { deep: true })
 
 const loading = ref(false)
 const message = ref('')
