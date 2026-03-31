@@ -121,6 +121,8 @@ async function handleSubmit() {
     if (response.ok && result.success) {
       showMessage(result.msg || 'Message sent successfully!', true)
       Object.assign(formData, { name: '', email: '', message: '' })
+      localStorage.removeItem(DRAFT_KEY)
+      launchConfetti()
     } else {
       showMessage(result.msg || 'Something went wrong. Please try again.', false)
     }
@@ -135,10 +137,25 @@ async function handleSubmit() {
 function showMessage(text, success) {
   message.value = text
   isSuccess.value = success
-  
-  setTimeout(() => {
-    message.value = ''
-  }, 5000)
+  setTimeout(() => { message.value = '' }, 5000)
+}
+
+function launchConfetti() {
+  const colors = ['#00d4aa', '#00e6b8', '#ffffff', '#a0f0e0']
+  for (let i = 0; i < 80; i++) {
+    const el = document.createElement('div')
+    el.className = 'confetti-piece'
+    el.style.cssText = `
+      left: ${Math.random() * 100}vw;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${1 + Math.random() * 2}s;
+      animation-delay: ${Math.random() * 0.5}s;
+      width: ${6 + Math.random() * 8}px;
+      height: ${6 + Math.random() * 8}px;
+    `
+    document.body.appendChild(el)
+    el.addEventListener('animationend', () => el.remove())
+  }
 }
 </script>
 
