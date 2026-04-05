@@ -22,6 +22,7 @@
             <i class="fas fa-clock"></i>
             <span>Response within 24 hours</span>
           </div>
+          <SocialLinksComponent />
         </div>
     
         <div class="contact-form">
