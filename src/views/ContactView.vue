@@ -57,6 +57,7 @@
 
 <script setup>
 import { ref, reactive, inject, watch } from 'vue'
+import SocialLinksComponent from '@/components/SocialLinksComponent.vue'
 
 const notification = inject('notification')
 
