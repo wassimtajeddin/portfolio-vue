@@ -60,28 +60,35 @@
 import { ref, reactive, inject, watch } from 'vue'
 import SocialLinksComponent from '@/components/SocialLinksComponent.vue'
 
+// Inject global notification system from App.vue
 const notification = inject('notification')
 
+// Copy email to clipboard and show notification
 const copyEmail = async () => {
   await navigator.clipboard.writeText('wassim.tajeddin@gmail.com')
   notification.value.addNotification('Email copied!', 'info')
 }
 
+// Copy phone number to clipboard and show notification
 const copyPhone = async () => {
   await navigator.clipboard.writeText('+46736842961')
   notification.value.addNotification('Phone number copied!', 'info')
 }
 
+// Open location in Google Maps
 const openMaps = () => {
   window.open('https://maps.google.com/?q=Malmö,Sweden', '_blank', 'noopener,noreferrer')
 }
 
+// localStorage key for saving form draft
 const DRAFT_KEY = 'contact_form_draft'
 
+// Load saved draft from localStorage or start with empty fields
 const formData = reactive(
   JSON.parse(localStorage.getItem(DRAFT_KEY) || '{"name":"","email":"","message":""}')
 )
 
+// Auto-save form draft to localStorage on every change
 watch(formData, (val) => {
   localStorage.setItem(DRAFT_KEY, JSON.stringify(val))
 }, { deep: true })
@@ -90,16 +97,19 @@ const loading = ref(false)
 const message = ref('')
 const isSuccess = ref(false)
 
+// API endpoint switches between dev and production
 const apiUrl = process.env.NODE_ENV === 'production' 
   ? 'https://admin.wassimtajeddin.com/api/contact'
   : 'http://localhost:3001/api/contact'
 
 async function handleSubmit() {
+  // Basic field validation
   if (!formData.name || !formData.email || !formData.message) {
     showMessage('Please fill in all fields', false)
     return
   }
   
+  // Email format validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(formData.email)) {
     showMessage('Please enter a valid email address', false)
@@ -122,6 +132,7 @@ async function handleSubmit() {
     
     if (response.ok && result.success) {
       showMessage(result.msg || 'Message sent successfully!', true)
+      // Clear form and draft after successful send
       Object.assign(formData, { name: '', email: '', message: '' })
       localStorage.removeItem(DRAFT_KEY)
       launchConfetti()
@@ -136,12 +147,14 @@ async function handleSubmit() {
   }
 }
 
+// Show a status message that auto-dismisses after 5 seconds
 function showMessage(text, success) {
   message.value = text
   isSuccess.value = success
   setTimeout(() => { message.value = '' }, 5000)
 }
 
+// Launch confetti animation on successful form submission
 function launchConfetti() {
   const colors = ['#00d4aa', '#00e6b8', '#ffffff', '#a0f0e0']
   for (let i = 0; i < 80; i++) {
