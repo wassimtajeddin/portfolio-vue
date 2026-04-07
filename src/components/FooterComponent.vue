@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-content">
-      <p>&copy; 2025 Wassim Tajeddin. All rights reserved.</p>
+      <p>&copy; {{ year }} Wassim Tajeddin. All rights reserved.</p>
       <div class="social-links">
         <a href="https://www.linkedin.com/in/wassim-tajeddin-82a563201/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
         <a href="https://github.com/wassimtajeddin/wassimtajeddin" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-// Footer component - displays copyright and social links
+const year = new Date().getFullYear()
 </script>
 <style scoped>
 
