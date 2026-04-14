@@ -2,7 +2,24 @@
   <main>
     <section id="projects" v-intersect>
       <h2>My Projects</h2>
-      <div class="project-cards">
+
+      <!-- Skeleton loading cards shown while content loads -->
+      <div v-if="loading" class="project-cards">
+        <div class="project-card skeleton-card" v-for="n in 6" :key="n">
+          <Skeleton height="1.5rem" width="60%" />
+          <Skeleton height="1rem" style="margin-top:1rem" />
+          <Skeleton height="1rem" width="80%" style="margin-top:0.5rem" />
+          <div class="tech-tags" style="margin-top:1rem; display:flex; gap:0.5rem">
+            <Skeleton height="1.5rem" width="60px" border-radius="20px" />
+            <Skeleton height="1.5rem" width="60px" border-radius="20px" />
+            <Skeleton height="1.5rem" width="60px" border-radius="20px" />
+          </div>
+          <Skeleton height="2rem" width="120px" border-radius="20px" style="margin-top:1.5rem" />
+        </div>
+      </div>
+
+      <!-- Actual project cards -->
+      <div v-else class="project-cards">
         <div class="project-card">
           <h3>Portfolio Vue App</h3>
           <p>Vue.js application integrated with Node.js API, MongoDB, and GitHub Actions for CI/CD.</p>
@@ -84,4 +101,10 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import Skeleton from '@/components/SkeletonComponent.vue'
+
+// Simulate a short loading delay to show skeleton
+const loading = ref(true)
+onMounted(() => setTimeout(() => { loading.value = false }, 800))
 </script>
