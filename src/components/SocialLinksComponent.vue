@@ -28,8 +28,10 @@
 <script setup>
 import { inject } from 'vue'
 
+// Inject global notification system from App.vue
 const notification = inject('notification')
 
+// Right-click to copy the link or email address to clipboard
 const copyLink = async (link) => {
   const text = link.url.startsWith('mailto:') ? link.url.replace('mailto:', '') : link.url
   await navigator.clipboard.writeText(text)
@@ -37,14 +39,17 @@ const copyLink = async (link) => {
   notification.value.addNotification(message, 'info')
 }
 
+// Track clicks for analytics (logged to console)
 const trackClick = (link) => {
   console.log(`[Analytics] Clicked: ${link.name} — ${new Date().toISOString()}`)
 }
 
+// Open link in a new tab (used for keyboard navigation)
 const openLink = (link) => {
   window.open(link.url, '_blank', 'noopener,noreferrer')
 }
 
+// Social media links configuration
 const socialLinks = [
   {
     name: 'GitHub',
