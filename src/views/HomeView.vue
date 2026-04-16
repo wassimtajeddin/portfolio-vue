@@ -14,7 +14,17 @@
 
     <section id="featured-skills" v-intersect>
       <h2>My Skills</h2>
-      <div class="skills-grid">
+
+      <!-- Skeleton for skills grid -->
+      <div v-if="loading" class="skills-grid">
+        <div class="skill-card" v-for="n in 7" :key="n">
+          <Skeleton height="1.2rem" width="50%" style="margin-bottom:1rem" />
+          <Skeleton height="0.9rem" style="margin-bottom:0.5rem" />
+          <Skeleton height="0.9rem" width="80%" style="margin-bottom:0.5rem" />
+          <Skeleton height="0.9rem" width="60%" />
+        </div>
+      </div>
+      <div v-else class="skills-grid">
         <SkillItem title="Backend" :skills="['Java', 'Spring Boot', 'Python', 'Node.js']" />
         <SkillItem title="Frontend" :skills="['Vue.js', 'JavaScript', 'HTML/CSS']" />
         <SkillItem title="Databases" :skills="['MySQL', 'SQLite', 'MongoDB']" />
@@ -27,7 +37,21 @@
 
     <section id="featured-projects" v-intersect>
       <h2>Featured Projects</h2>
-      <div class="project-cards">
+
+      <!-- Skeleton for featured project cards -->
+      <div v-if="loading" class="project-cards">
+        <div class="project-card" v-for="n in 4" :key="n">
+          <Skeleton height="1.5rem" width="60%" />
+          <Skeleton height="1rem" style="margin-top:1rem" />
+          <Skeleton height="1rem" width="80%" style="margin-top:0.5rem" />
+          <div style="display:flex; gap:0.5rem; margin-top:1rem">
+            <Skeleton height="1.5rem" width="60px" border-radius="20px" />
+            <Skeleton height="1.5rem" width="60px" border-radius="20px" />
+          </div>
+          <Skeleton height="2rem" width="120px" border-radius="20px" style="margin-top:1.5rem" />
+        </div>
+      </div>
+      <div v-else class="project-cards">
         <div class="project-card">
           <h3>Portfolio Vue App</h3>
           <p>Vue.js application integrated with Node.js API, MongoDB, and GitHub Actions for CI/CD.</p>
@@ -82,13 +106,19 @@
 
 <script>
 import SkillItem from '@/components/SkillItemComponent.vue'
+import Skeleton from '@/components/SkeletonComponent.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    SkillItem
+    SkillItem,
+    Skeleton
+  },
+  data() {
+    return { loading: true }
   },
   mounted() {
+    setTimeout(() => { this.loading = false }, 800)
     this.typeText();
   },
   methods: {
