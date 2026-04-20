@@ -4,6 +4,24 @@
       <h2>Contact Me</h2>
       
       <div class="contact-container">
+
+        <!-- Skeleton shown while page loads -->
+        <template v-if="loading">
+          <div class="contact-info">
+            <Skeleton height="1.5rem" width="50%" style="margin-bottom:2rem" />
+            <Skeleton height="1rem" v-for="n in 4" :key="n" style="margin-bottom:1.8rem" />
+          </div>
+          <div class="contact-form">
+            <Skeleton height="1.5rem" width="40%" style="margin-bottom:2rem" />
+            <Skeleton height="3rem" style="margin-bottom:1.8rem" />
+            <Skeleton height="3rem" style="margin-bottom:1.8rem" />
+            <Skeleton height="8rem" style="margin-bottom:1.8rem" />
+            <Skeleton height="3rem" width="150px" border-radius="50px" />
+          </div>
+        </template>
+
+        <!-- Actual content -->
+        <template v-else>
         <div class="contact-info">
           <h3>Get in Touch</h3>
           <div class="contact-detail" @click="copyEmail" style="cursor:pointer">
@@ -51,17 +69,22 @@
             {{ message }}
           </div>
         </div>
+        </template>
       </div>
-    </section>
   </main>
 </template>
 
 <script setup>
-import { ref, reactive, inject, watch } from 'vue'
+import { ref, reactive, inject, watch, onMounted } from 'vue'
 import SocialLinksComponent from '@/components/SocialLinksComponent.vue'
+import Skeleton from '@/components/SkeletonComponent.vue'
 
 // Inject global notification system from App.vue
 const notification = inject('notification')
+
+// Show skeleton for 800ms on page load
+const loading = ref(true)
+onMounted(() => setTimeout(() => { loading.value = false }, 800))
 
 // Copy email to clipboard and show notification
 const copyEmail = async () => {
