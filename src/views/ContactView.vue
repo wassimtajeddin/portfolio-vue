@@ -6,7 +6,7 @@
       <div class="contact-container">
 
         <!-- Skeleton shown while page loads -->
-        <template v-if="loading">
+        <template v-if="pageLoading">
           <div class="contact-info">
             <Skeleton height="1.5rem" width="50%" style="margin-bottom:2rem" />
             <Skeleton height="1rem" v-for="n in 4" :key="n" style="margin-bottom:1.8rem" />
@@ -61,8 +61,8 @@
                 {{ formData.message.length }}/500
               </span>
             </div>
-            <button type="submit" class="submit-btn" :disabled="loading">
-              {{ loading ? 'Sending...' : 'Send Message' }}
+            <button type="submit" class="submit-btn" :disabled="submitting">
+              {{ submitting ? 'Sending...' : 'Send Message' }}
             </button>
           </form>
           <div v-if="message" class="message" :class="{ success: isSuccess, error: !isSuccess }">
@@ -71,6 +71,7 @@
         </div>
         </template>
       </div>
+    </section>
   </main>
 </template>
 
@@ -83,8 +84,8 @@ import Skeleton from '@/components/SkeletonComponent.vue'
 const notification = inject('notification')
 
 // Show skeleton for 800ms on page load
-const loading = ref(true)
-onMounted(() => setTimeout(() => { loading.value = false }, 800))
+const pageLoading = ref(true)
+onMounted(() => setTimeout(() => { pageLoading.value = false }, 800))
 
 // Copy email to clipboard and show notification
 const copyEmail = async () => {
@@ -116,7 +117,7 @@ watch(formData, (val) => {
   localStorage.setItem(DRAFT_KEY, JSON.stringify(val))
 }, { deep: true })
 
-const loading = ref(false)
+const submitting = ref(false)
 const message = ref('')
 const isSuccess = ref(false)
 
@@ -139,7 +140,7 @@ async function handleSubmit() {
     return
   }
   
-  loading.value = true
+  submitting.value = true
   message.value = ''
   
   try {
@@ -166,7 +167,7 @@ async function handleSubmit() {
     console.error('Request failed:', error)
     showMessage('Failed to send message.', false)
   } finally {
-    loading.value = false
+    submitting.value = false
   }
 }
 
